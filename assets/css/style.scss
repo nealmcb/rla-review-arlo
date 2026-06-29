@@ -1,0 +1,20 @@
+---
+---
+
+@import "minima";
+
+// Standard browser-blue hyperlinks throughout
+a {
+  color: #0645AD;
+  &:visited { color: #551A8B; }
+  &:hover   { color: #0645AD; text-decoration: underline; }
+  &:active  { color: #D00000; }
+}
+
+// Keep nav/header links white-on-dark as minima intends
+.site-nav a,
+.site-header a,
+.site-title,
+.site-title:visited {
+  color: #fdfdfd;
+}

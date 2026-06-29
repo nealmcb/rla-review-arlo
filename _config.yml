@@ -1,12 +1,12 @@
-title: Georgia May 2026 RLA Transparency Investigation
+title: Georgia May 2026 RLA — Transparency Analysis
 description: >-
   Independent replication and transparency analysis of Georgia's
   May 19, 2026 General Primary Risk-Limiting Audit (BATCH_COMPARISON/MACRO,
   Arlo/VotingWorks, all 159 counties, 5% risk limit).
-author: Neal McBurnett (nealmcb@gmail.com)
 url: "https://nealmcb.github.io"
 baseurl: "/ga-rla-2026-05-replication"
 theme: minima
+permalink: pretty
 plugins:
   - jekyll-feed
 markdown: kramdown

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Hash Commitment Analysis
+---
+
 # Hash Commitment Analysis — Georgia May 19, 2026 RLA
 
 ## ✓ OVERALL RESULT: HASH COMMITMENT VERIFIED

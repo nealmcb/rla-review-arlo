@@ -1,3 +1,8 @@
+---
+layout: default
+title: Artifact Inventory
+---
+
 # Artifact Inventory — Georgia May 19, 2026 RLA
 
 ## Source
@@ -113,8 +118,13 @@ All files served via MailChimp CDN (mcusercontent.com → CloudFront).
 The SOS June 3 press release states:
 > "You can confirm that these were the same batch tallies that we started the audit with by performing a SHA256 hash of the file and matching it to the tweet from Georgia Secretary of State Brad Raffensperger (@GASecofState) from 05/28/2026 at 11:52 AM."
 
-Known hash prefix from the tweet (referenced in investigation briefing): `7d00771bf178007f4c6f43bf45b6`
+**Both committed hashes verified.** The SHA256 hashes tweeted by @GaSecofState on May 28, 2026 match the currently posted files exactly:
 
-**None of the three downloaded files nor any of the 318 extracted files match this prefix.**
+| File | Tweeted hash | Match |
+|------|-------------|-------|
+| `manifests.zip` | `c31d1f67404634ea04b4c68a5272655c9bd3879fe2233f4878819963cfc17aaf` | ✓ |
+| `candidate_totals.zip` | `2842be86bd615160f36f0af8f6d52a2fe1192103163dd51de8d8a1617ca10312` | ✓ |
 
-See `reports/hash_commitment.md` for full analysis.
+Note: An earlier version of this investigation used an incorrect prefix (`7d00771bf178007f4c6f43bf45b6`) that does not correspond to either file. The actual tweeted hashes are the full 64-character values above.
+
+See the [Hash Commitment Analysis](hash_commitment/) for full details.

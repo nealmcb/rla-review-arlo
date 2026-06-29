@@ -1,8 +1,12 @@
-# Georgia May 19, 2026 General Primary RLA — Transparency Investigation Report
+---
+layout: default
+title: Executive Summary
+---
+
+# Georgia May 19, 2026 General Primary RLA — Executive Summary
 
 **Investigation date:** 2026-06-29  
-**Investigator:** Neal McBurnett (nealmcb@gmail.com)  
-**Repository:** `/home/sprite/ga-2026-rla-transparency/`
+**Repository:** [github.com/nealmcb/ga-rla-2026-05-replication](https://github.com/nealmcb/ga-rla-2026-05-replication) &nbsp;·&nbsp; [Back to main page](../)
 
 ---
 
@@ -174,30 +178,17 @@ The files currently posted are the same bytes committed in the May 28 tweet. The
 
 ---
 
-## Comparison to VotingWorks/Arlo PR #2350
+## Comparison to Arlo PR #2350 Transparency Framework
 
-PR #2350 ("docs: Arlo comparison audit transparency report and guide"), opened by Neal McBurnett on June 20, 2026, establishes a three-phase transparency framework for comparison audits: pre-seed, post-seed/pre-comparison, and post-audit. It distinguishes "audit was conducted" from "audit is independently reproducible."
+[Arlo PR #2350](https://github.com/votingworks/arlo/pull/2350) ("docs: Arlo comparison audit transparency report and guide", opened June 20, 2026) establishes a three-phase transparency framework for comparison audits — pre-seed, post-seed/pre-comparison, and post-audit — and distinguishes "audit was conducted" from "audit is independently reproducible." The full checklist comparison appears in the [Transparency Gap Analysis](transparency_gap_analysis/).
 
 **What Georgia already does well:**
 Georgia posts all three major artifact types (report, manifests, tallies) in machine-readable CSV format, includes the random seed in the report, lists per-batch ticket numbers, held a public dice-roll event, expanded to two contests in 2026, achieved a 5% risk limit, and committed both artifact hashes on social media before hand-counting began — placing it ahead of most US jurisdictions.
 
 **Remaining transparency gaps:**
-The hash commitment was made post-seed (3 minutes after seed entry) rather than pre-seed, and is hosted only on X/Twitter rather than a durable official location. The sampler-inputs artifact, Arlo/numpy version, independent verification scripts, and standardized county-level result posting are absent.
+The hash commitment was made post-seed (~3 minutes after seed entry) rather than pre-seed, and is hosted only on X/Twitter rather than a durable official location. The sampler-inputs artifact, Arlo/numpy version, independent verification scripts, standardized county-level result posting, and an explicit ballot-type field in the manifests are absent.
 
-**Immediate improvements without law change:**
-Commit hashes before the dice roll; archive the tweet and link it from sos.ga.gov; publish the Arlo/numpy versions and a sampler-inputs file; host artifacts on sos.ga.gov.
+**Path forward:**
+Commit hashes before the dice roll; archive the commitment and link it from sos.ga.gov; publish the Arlo/numpy versions and a sampler-inputs file; host artifacts on sos.ga.gov; add an explicit BMD/HMPB field to manifests to enable cleaner post-audit analysis.
 
-**Why this matters for Verified Voting:**
-The current publication model is strong relative to most jurisdictions and should be recognized. The remaining gap is moving from "post-audit attestation" to "pre-seed commitment" — a procedural change, not a legislative one.
-
----
-
-## Recommended Language for Email to Verified Voting
-
-"Georgia's expansion of RLA contest coverage in the May 2026 primary — auditing both the Republican US Senate and Democratic Governor races with a 5% risk limit across all 159 counties — is important and should be recognized. Georgia's publication of manifests, batch tallies, and final audit reports in machine-readable format, along with a social-media hash commitment before hand-counting began and inclusion of the random seed in the audit report, provides a stronger public record than most jurisdictions.
-
-I was able to independently verify this investigation: both committed hashes exactly match the currently posted files, four individual batch ticket numbers reproduce correctly from the public seed using the open-source consistent_sampler library, and the final audit report contains enough information to assess discrepancy patterns.
-
-However, the transparency standard should be end-to-end public reproducibility, not merely post-audit attestation. My recent Arlo PR #2350 frames this as a combination of mechanical verification — replicating the sample draw and risk calculation from published artifacts — and human verification — allowing observers to independently follow audit-board interpretations without compromising the blind audit. Georgia's hash commitment, while verified, was made approximately 3 minutes after the random seed was entered and sample was drawn, making it a post-seed attestation rather than a pre-seed commitment. A commitment made before the dice roll would eliminate even the theoretical risk that insiders with advance knowledge of the seed could manipulate the committed data.
-
-The good news is that the path to pre-seed commitment is straightforward and requires no statutory change: export the manifests and candidate totals from Arlo, hash them, post the hashes durably on sos.ga.gov, and only then proceed to the public dice-roll ceremony. I would urge Verified Voting to recognize Georgia's progress while advocating for this and the other improvements — publishing the Arlo version, providing companion verification scripts, and standardizing county-level tally sheet posting — so that expanded RLA coverage comes with fully reproducible public verification."
+Comments and suggestions are welcome as [GitHub Issues](https://github.com/nealmcb/ga-rla-2026-05-replication/issues).

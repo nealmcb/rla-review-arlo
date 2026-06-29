@@ -1,3 +1,8 @@
+---
+layout: default
+title: Transparency Gap Analysis
+---
+
 # Transparency Gap Analysis — Georgia May 19, 2026 RLA
 ## Comparison to VotingWorks/Arlo PR #2350
 
@@ -246,8 +251,10 @@ These gaps do not mean the audit was wrong. They mean the audit record does not 
 
 ---
 
-## Relevance to Verified Voting's Public Statement
+## Context and Further Reading
 
-Georgia's expansion to two contests and continued use of Arlo with public artifact posting makes it a positive model for other jurisdictions. But a strong public statement should acknowledge that the transparency standard should be end-to-end public reproducibility, not merely the internal operation of audit software.
+These gaps do not indicate the audit outcome was wrong. Georgia's 2026 RLA is among the strongest public audit records in the country. The goal of this analysis is to identify the specific procedural and publication steps that would move the record from "conducted and credible" to "independently reproducible by any member of the public."
 
-See `reports/README.md` for recommended language.
+See the [Executive Summary](README/) for the full recommendation list, and [Arlo Issue #2351](https://github.com/votingworks/arlo/issues/2351) for the ongoing discussion of transparency best practices.
+
+Comments on this analysis are welcome as [GitHub Issues](https://github.com/nealmcb/ga-rla-2026-05-replication/issues).

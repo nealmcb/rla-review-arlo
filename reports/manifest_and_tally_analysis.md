@@ -1,3 +1,8 @@
+---
+layout: default
+title: Manifest and Tally Analysis
+---
+
 # Manifest and Candidate Tally Analysis — Georgia May 19, 2026 RLA
 
 ## Ballot Manifests

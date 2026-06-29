@@ -1,3 +1,8 @@
+---
+layout: default
+title: Sample Reproducibility
+---
+
 # Sample Reproducibility Analysis — Georgia May 19, 2026 RLA
 
 ## Summary
