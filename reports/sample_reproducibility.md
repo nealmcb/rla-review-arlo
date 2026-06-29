@@ -110,8 +110,21 @@ for batch_key in sampled_batch_keys:
 
 1. The sample is drawn via `numpy.random.default_rng(int_seed).choice(...)` with PPEB weights
 2. The weights are derived from per-batch MACRO error bounds (computable from the public candidate totals)
-3. The numpy random number stream depends on the **exact numpy version** — different versions may produce different samples even with the same seed
-4. All public inputs are available; only the numpy version is unknown
+3. All public inputs are available; the exact numpy version used at audit time was not published as part of the audit record
+
+### numpy Version Analysis
+
+The numpy version matters for reproducibility through two mechanisms — one guaranteed stable, one not.
+
+**What IS stable across numpy versions:** `numpy.random.PCG64` carries a documented compatibility guarantee: *"PCG64 makes a guarantee that a fixed seed will always produce the same random integer stream."* The underlying bit generator output for a given seed state is therefore stable.
+
+**What is NOT guaranteed stable:** `numpy.random.SeedSequence` — which converts the 256-bit integer seed (`int(sha256_hex(audit_seed), 16)`) into a PCG64 seed state — carries no equivalent documented guarantee. The SeedSequence entropy-mixing algorithm was revised in numpy 1.20; whether it has changed since is not documented.
+
+**What Arlo actually locks:** Arlo's `pyproject.toml` constrains `numpy = "^1.22.0"` and its `poetry.lock` pins the exact version to **numpy 1.26.4**. The reproduction environment used in this repository has **numpy 2.5.0** — a different major version. numpy 2.0 introduced breaking changes to `Generator.choice` internals (algorithm path, tolerance for weight sums not equalling exactly 1.0).
+
+**Bottom line:** Reproducing the full 138-batch PPEB draw requires numpy 1.26.4. The ticket numbers reported in this repository are reproducible with any numpy version because they use only `consistent_sampler` (pure Python, version-independent). The `numpy.random.default_rng(...).choice(...)` call for PPEB sample order is the one version-sensitive step.
+
+**Arlo issues:** No open or closed Arlo GitHub issues were found addressing numpy version pinning for audit reproducibility. This gap — publishing the `poetry.lock` numpy version alongside the audit artifacts — is a straightforward improvement that would close the question entirely.
 
 ### MACRO Sample Sizes
 
