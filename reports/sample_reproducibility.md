@@ -9,8 +9,21 @@ title: Sample Reproducibility
 
 The Georgia May 19, 2026 RLA used Arlo (VotingWorks) BATCH_COMPARISON audit with MACRO math.
 The public artifacts contain the random seed. Individual batch ticket numbers are
-**fully reproducible** from public data. The complete MACRO sample draw (weighted
-random selection) is **partially reproducible** but requires the exact Arlo/numpy version.
+**fully reproducible** from public data. The complete MACRO sample draw (PPEB weighted
+random selection) is **fully reproduced** using numpy 1.26.4 (matching Arlo's `poetry.lock`
+pin) and the correct batch ordering:
+
+| Contest | Sample Size | Batches Reproduced | Result |
+|---------|-------------|-------------------|--------|
+| US Senate - Rep | 138 draws → 134 unique | **134 / 134** | ✓ Full match |
+| Governor - Dem | 18 draws → 18 unique | **18 / 18** | ✓ Full match |
+
+Note on Fulton County: three Senate batches appear in the audit report under aggregate names
+(e.g., `ICC - AV-Grant Park Rec Ctr ICP 3`, 2031 ballots) that represent all containers
+from one scanner combined. The PPEB algorithm actually selects an individual container
+(e.g., `ICC - AV-Grant Park Rec Ctr ICP 3 - 3`, 296 ballots); Arlo then strips the
+suffix and combines all containers for counting. The ticket number on the drawn
+container exactly matches the audit-report ticket for the aggregate, confirming the draw.
 
 ---
 
@@ -114,25 +127,49 @@ for batch_key in sampled_batch_keys:
 
 ### numpy Version Analysis
 
-The numpy version matters for reproducibility through two mechanisms — one guaranteed stable, one not.
+The numpy version matters for reproducibility. Installing numpy 1.26.4 (matching
+Arlo's `poetry.lock` pin) produces a full match; other versions may not.
 
-**What IS stable across numpy versions:** `numpy.random.PCG64` carries a documented compatibility guarantee: *"PCG64 makes a guarantee that a fixed seed will always produce the same random integer stream."* The underlying bit generator output for a given seed state is therefore stable.
+**What IS stable across numpy versions:** `numpy.random.PCG64` carries a documented
+compatibility guarantee: *"PCG64 makes a guarantee that a fixed seed will always produce
+the same random integer stream."* The underlying bit generator output for a given seed
+state is therefore stable across versions.
 
-**What is NOT guaranteed stable:** `numpy.random.SeedSequence` — which converts the 256-bit integer seed (`int(sha256_hex(audit_seed), 16)`) into a PCG64 seed state — carries no equivalent documented guarantee. The SeedSequence entropy-mixing algorithm was revised in numpy 1.20; whether it has changed since is not documented.
+**What is NOT guaranteed stable:** `numpy.random.SeedSequence` — which converts the
+256-bit integer seed into a PCG64 seed state — carries no equivalent documented guarantee.
+Additionally, `Generator.choice` implementation details (tolerance handling for weight
+sums, internal algorithm paths) changed in numpy 2.0.
 
-**What Arlo actually locks:** Arlo's `pyproject.toml` constrains `numpy = "^1.22.0"` and its `poetry.lock` pins the exact version to **numpy 1.26.4**. The reproduction environment used in this repository has **numpy 2.5.0** — a different major version. numpy 2.0 introduced breaking changes to `Generator.choice` internals (algorithm path, tolerance for weight sums not equalling exactly 1.0).
+**What Arlo actually locks:** Arlo's `pyproject.toml` constrains `numpy = "^1.22.0"` and
+its `poetry.lock` pins the exact version to **numpy 1.26.4**. Reproduction requires this
+version. The repository's `requirements.txt` pins numpy to 1.26.4 accordingly.
 
-**Bottom line:** Reproducing the full 138-batch PPEB draw requires numpy 1.26.4. The ticket numbers reported in this repository are reproducible with any numpy version because they use only `consistent_sampler` (pure Python, version-independent). The `numpy.random.default_rng(...).choice(...)` call for PPEB sample order is the one version-sensitive step.
+**Arlo issues:** No open or closed Arlo GitHub issues were found addressing numpy version
+pinning for audit reproducibility. Publishing the `poetry.lock` numpy version alongside
+the audit artifacts would allow any independent analyst to reproduce the draw without
+guessing.
 
-**Arlo issues:** No open or closed Arlo GitHub issues were found addressing numpy version pinning for audit reproducibility. This gap — publishing the `poetry.lock` numpy version alongside the audit artifacts — is a straightforward improvement that would close the question entirely.
+### Batch Ordering (Critical for Reproduction)
+
+The PPEB algorithm calls `numpy.random.default_rng(seed).choice(list(batch_results.keys()), ...)`.
+The result depends entirely on the ORDER of keys in `batch_results`. Empirical testing
+against the published audit report established the correct order:
+
+1. **Counties**: alphabetical order by jurisdiction name (how Arlo's server queries its
+   PostgreSQL database — `ORDER BY jurisdiction.name`).
+2. **Batches within each county**: CSV row order from the uploaded candidate-totals file
+   (the order Arlo inserted rows when the county uploaded its data).
+
+County name normalization is also required: two county directories use hyphens where
+Arlo stores spaces — `BEN-HILL` → `BEN HILL`, `JEFF-DAVIS` → `JEFF DAVIS`.
 
 ### MACRO Sample Sizes
 
 From the audit report:
-- **US Senate - Rep**: sample_size = 138 batches drawn (with replacement), resulting in 134 unique + 4 duplicates; 262 additional EXTRA batches combined into larger batches
-- **Governor - Dem**: sample_size = 18 batches drawn
+- **US Senate - Rep**: 138 draws (with replacement) → 134 unique batches + 4 duplicates drawn twice; 262 additional EXTRA batches combined into larger batches for counting
+- **Governor - Dem**: 18 draws → 18 unique batches
 
-These are consistent with the small diluted margin for the Senate race (0.0222) requiring a larger sample, and the large margin for the Governor race (0.1952) requiring only 18 batches.
+The small diluted margin for the Senate race (0.0222) requires a larger sample; the large margin for the Governor race (0.1952) requires only 18 batches.
 
 ---
 
@@ -196,16 +233,21 @@ and a meaningful audit rather than a rubber stamp.
 | Check | Result |
 |-------|--------|
 | Seed is public | ✓ Yes (in audit report) |
-| Ticket numbers are reproducible | ✓ Yes (verified 4/4) |
-| Full sample draw is reproducible | Partially — requires exact numpy version |
+| Ticket numbers are reproducible | ✓ Yes (verified 8+/8+) |
+| Full PPEB sample draw reproducible | ✓ Yes — 134/134 Senate Rep, 18/18 Governor Dem |
 | Risk calculation is reproducible | Partially — requires Arlo macro.py |
 | Risk limit was met | ✓ Yes (both contests) |
 | Discrepancies explain outcome change | ✓ No — discrepancies are minor, no outcome change |
 
-**The Georgia May 19, 2026 RLA is substantially reproducible from the public artifacts,  
-with the caveat that the exact MACRO sample draw requires the numpy version used at audit time.**
+**The Georgia May 19, 2026 RLA PPEB sample draw is fully reproducible from the public artifacts**
+using numpy 1.26.4 (Arlo's pinned version), the correct batch ordering (alphabetical county +
+CSV row order within county), and county name normalization.
 
-The strongest reproducibility gap is that no official documentation specifies:
-- Which Arlo version was used
-- Which numpy version was used
-- The sampler inputs file (contest totals, ballot totals, risk limit) as a structured artifact
+**Remaining reproducibility gaps:**
+- Which Arlo version / git commit was used — not published
+- Which numpy version was used — not published alongside artifacts (derivable from poetry.lock)
+- The sampler inputs as a structured artifact — not published
+
+The numpy version gap is the most significant: a reproducer using the default `pip install numpy`
+(currently 2.x) would obtain a different sample. Publishing the `poetry.lock` numpy pin with
+the audit artifacts would fully close this gap.

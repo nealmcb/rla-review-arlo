@@ -34,7 +34,7 @@ title: Georgia May 2026 RLA — Transparency Analysis
 **What this repository verifies:**
 
 - ✓ **Both committed SHA256 hashes verified.** The Georgia Secretary of State tweeted SHA256 hashes of both artifact ZIPs on May 28, 2026 (before any county hand-counting began). Both match the files currently posted for download exactly. The files were not altered during or after the audit.
-- ✓ **Ticket numbers independently reproduced.** Four individual batch ticket numbers from the audit report were recomputed from the public seed (`06712221796172622814`) using the open-source `consistent_sampler` library — all four match exactly.
+- ✓ **Full PPEB sample draw independently reproduced.** All 134 US Senate and 18 Governor batches (100%) were reproduced using numpy 1.26.4 (matching Arlo's `poetry.lock` pin) and the established batch ordering. Individual batch ticket numbers also verified via the open-source `consistent_sampler` library.
 - ✓ **Risk limit met.** P-values 4.91% (Senate Rep) and 4.17% (Governor Dem) are below the 5% threshold.
 - ⚠ **BMD batches show 5× higher discrepancy rates than HMPB batches** — expected from the QR-code vs. printed-text read split, but highlights the fundamental voter-verification gap in BMD auditing (see [below](#bmd-verifiability-and-the-voter-verification-gap)).
 - ⚠ **Hash commitment was post-seed** (~3 minutes after the random seed was entered), not pre-seed. The SOS explained this was deliberate; it still protects against post-audit alteration but not against insider manipulation in that brief window.

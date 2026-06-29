@@ -22,7 +22,8 @@ Independent replication and transparency analysis of Georgia's **May 19, 2026 Ge
 ## Key Results
 
 - ✓ Both SHA256 hashes committed in the May 28 @GaSecofState tweet **verified** — files are byte-identical to what was committed before hand-counting began
-- ✓ Four sample ticket numbers **independently reproduced** from the public seed using `consistent_sampler`
+- ✓ Full PPEB sample draw **independently reproduced**: 134/134 Senate Rep + 18/18 Governor Dem batches (100%) using numpy 1.26.4 and the established batch ordering
+- ✓ Ticket numbers **independently reproduced** from the public seed using `consistent_sampler`
 - ✓ Risk limit met: p = 4.91% (Senate Rep), p = 4.17% (Governor Dem)
 - ⚠ BMD batches show ~5× higher discrepancy rates than HMPB batches (33.9% AV vs. 6.5% absentee) — see [BMD verifiability discussion](https://nealmcb.github.io/ga-rla-2026-05-replication/#bmd-verifiability-and-the-voter-verification-gap)
 - ⚠ Only two contests audited — no RLA evidence exists for any other contest on the May 19 ballot
@@ -33,13 +34,16 @@ Independent replication and transparency analysis of Georgia's **May 19, 2026 Ge
 ```bash
 git clone https://github.com/nealmcb/ga-rla-2026-05-replication.git
 cd ga-rla-2026-05-replication
-pip install consistent_sampler numpy
+pip install -r requirements.txt   # pins numpy==1.26.4 to match Arlo's lock file
 
 # Verify the two committed hashes
 sha256sum downloads/manifests.zip downloads/candidate_totals.zip
 
 # Reproduce ticket numbers from the public seed
 python3 scripts/reproduce_sample.py
+
+# Reproduce the full PPEB sample draw (134/134 + 18/18 match)
+python3 scripts/reproduce_ppeb_sample.py
 ```
 
 ## Credits
