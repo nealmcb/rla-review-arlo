@@ -18,3 +18,4 @@ title: Reports
 | [Discrepancy Analysis](discrepancy_analysis/) | Per-ballot rates by ballot type; batch size effects; Jackson pattern; TOOMBS anomaly |
 | [Manifest & Tally Analysis](manifest_and_tally_analysis/) | County statistics, voting-mode breakdown, candidate totals, diluted margins |
 | [Artifact Inventory](artifact_inventory/) | All download URLs, SHA256 checksums, HTTP header notes |
+| [Ballot Image Audit](ballot_image_audit/) | Contest-results spreadsheet analysis; reconciliation of SOS headline figures; Cherokee County pattern |
