@@ -6,8 +6,8 @@ title: Georgia May 2026 RLA — Review
 # Georgia May 19, 2026 General Primary
 ## Risk-Limiting Audit — Transparency Review
 
-**Version:** v0.4 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp;
-[v0.4 tag](https://github.com/nealmcb/rla-review-arlo/releases/tag/v0.4) &nbsp;·&nbsp;
+**Version:** v0.5 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp;
+[v0.5 tag](https://github.com/nealmcb/rla-review-arlo/releases/tag/v0.5) &nbsp;·&nbsp;
 [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp;
 [Comments / Issues](https://github.com/nealmcb/rla-review-arlo/issues)
 
