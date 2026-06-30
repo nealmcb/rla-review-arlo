@@ -5,6 +5,10 @@ title: Hash Commitment Analysis
 
 # Hash Commitment Analysis — Georgia May 19, 2026 RLA
 
+**Version:** v0.3 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
+
+---
+
 ## ✓ OVERALL RESULT: HASH COMMITMENT VERIFIED
 
 Both committed hashes match the currently posted files exactly.

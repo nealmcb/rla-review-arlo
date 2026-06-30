@@ -5,6 +5,10 @@ title: Discrepancy Analysis
 
 # Discrepancy Analysis — Georgia May 19, 2026 RLA
 
+**Version:** v0.3 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
+
+---
+
 ## Summary
 
 The May 19, 2026 Georgia primary audit found discrepancies in 100 of 706 hand-counted

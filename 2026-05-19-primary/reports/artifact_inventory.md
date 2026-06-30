@@ -5,6 +5,10 @@ title: Artifact Inventory
 
 # Artifact Inventory — Georgia May 19, 2026 RLA
 
+**Version:** v0.3 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
+
+---
+
 ## Source
 
 Georgia Secretary of State June 3, 2026 press release:  
