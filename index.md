@@ -7,8 +7,8 @@ title: RLA Review — Arlo
 
 Independent review and transparency analysis of Risk-Limiting Audits conducted using [Arlo](https://github.com/votingworks/arlo) (VotingWorks).
 
-**Version:** v0.10 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp;
-[v0.10 tag](https://github.com/nealmcb/rla-review-arlo/releases/tag/v0.10) &nbsp;·&nbsp;
+**Version:** v0.11 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp;
+[v0.11 tag](https://github.com/nealmcb/rla-review-arlo/releases/tag/v0.11) &nbsp;·&nbsp;
 [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp;
 [Comments / Issues](https://github.com/nealmcb/rla-review-arlo/issues)
 

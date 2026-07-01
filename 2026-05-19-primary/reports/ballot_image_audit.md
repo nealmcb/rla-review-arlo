@@ -5,7 +5,7 @@ title: Ballot Image Audit Analysis
 
 # Ballot Image Audit Analysis — Georgia May 19, 2026 General Primary
 
-**Version:** v0.10 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
+**Version:** v0.11 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
 
 ---
 
@@ -149,6 +149,26 @@ verifying or disputing the tally for a specific scanner batch.
 The ballot images for Cherokee, Muscogee, and Henry counties — where systematic discrepancies
 were observed — could in principle be used for county-level OCR re-runs. That analysis has
 not been conducted in this review.
+
+**Voter privacy concern — ballot de-anonymization:** Because ballot images are organized
+by ballot style (precinct × party), and Georgia voter rolls are public records that include
+who voted and which party primary they chose, small ballot-style folders may effectively
+de-anonymize individual voters. In Evans County, Pre_33 contains **exactly one image** — one
+Democratic voter in that ballot style. If the public voter roll for that precinct shows only
+one person voted a Democratic primary ballot on May 19, 2026, that person is identifiable,
+and their complete vote record (every contest, every choice) is visible on the image.
+
+This concern extends to any ballot style folder with a small enough count that cross-
+referencing with voter roll data narrows down the identity. In Evans County alone, several
+folders have counts under 20 (Pre_24: 9, Pre_22: 14, Pre_29: 14, Pre_33: 1). Across 125
+counties with images posted, many rural counties will have similarly thin precinct-party
+combinations.
+
+Georgia law generally provides ballot secrecy, and the Secretary of State's terms of
+service state that images are provided for transparency and audit purposes. However, the
+ballot image export format — organized by precinct × party rather than shuffled — does
+not appear to include any minimum-count suppression threshold that would prevent the
+publication of potentially identifying ballot images.
 
 ---
 
