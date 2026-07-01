@@ -5,7 +5,7 @@ title: Ballot Image Audit Analysis
 
 # Ballot Image Audit Analysis — Georgia May 19, 2026 General Primary
 
-**Version:** v0.12 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
+**Version:** v0.13 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
 
 ---
 
@@ -54,18 +54,21 @@ The step-by-step process:
 | Audit | Enhanced Audit applies OCR to stored ballot images, reading the printed human-readable text (BMD) or optical marks (HMPB); does not re-read the QR code from the image |
 | Comparison | OCR interpretation compared against each ballot's CVR (ballot level) and against certified results (county level); flagged discrepancies go to manual review |
 
-**For BMD (in-person) ballots:** The scanner tabulates from the QR code, producing a CVR.
-The audit reads the **printed human-readable text** via OCR. Because the CVR comes from
-QR-code reading and the OCR comes from text reading, **any disagreement between what the
-QR code encoded and what was printed is detected as a discrepancy.** This is the core
-verification the audit provides: it catches QR-vs-text encoding errors at the ballot level.
+**For BMD (in-person) ballots:** The scanner tabulates from the QR code (Dominion system),
+producing a CVR. The audit reads the **printed human-readable text** via OCR — it does not
+re-read the QR code from the stored image. The Georgia November 2024 Enhanced Voting report
+states explicitly: *"The audit is intended to tabulate the same ballots from the human
+readable text and compare those results against the tabulator's results which were computed
+from the QR codes."* Because the CVR comes from QR-code reading and the OCR comes from
+text reading, **any disagreement between what the QR code encoded and what was printed is
+detected as a discrepancy.** This is the core verification the audit provides.
 
-QR codes use Reed-Solomon error correction; they either decode correctly or fail entirely —
-there is no silent partial-corruption failure mode. So the comparison is really: does the
-text printed on the ballot match what the QR code encoded? Enhanced Voting's November 2024
-general election audit found **zero such differences** across 5,025,863 Georgia BMD ballots;
-the South Carolina June 2026 audit found **zero such differences** across 841,485 summary
-ballots. Both confirm that QR codes and printed text agreed on every BMD ballot examined.
+Note: Georgia uses Dominion ImageCast X BMDs with QR codes; South Carolina uses ES&S
+ExpressVote BMDs with PDF417 barcodes. The encoding differs, but Enhanced Voting's
+methodology is the same for both: OCR of printed text compared against the barcode/QR-based
+CVR. The Nov 2024 Georgia audit found **zero QR-vs-text differences** across 5,025,863 BMD
+ballots; the SC June 2026 audit found **zero barcode-vs-text differences** across 841,485
+summary ballots. Both confirm encoding and printed text agreed on every BMD ballot examined.
 
 **Known failure mode — missing printed text:** The SC June 2026 audit found 21 summary
 ballots across 13 counties where the printer failed to produce readable human-readable text
