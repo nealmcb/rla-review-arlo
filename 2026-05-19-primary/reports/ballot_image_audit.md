@@ -5,7 +5,7 @@ title: Ballot Image Audit Analysis
 
 # Ballot Image Audit Analysis — Georgia May 19, 2026 General Primary
 
-**Version:** v0.17 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
+**Version:** v0.18 &nbsp;·&nbsp; **Review timestamp:** 2026-07-01T00:00:00Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
 
 ---
 
@@ -27,7 +27,7 @@ released spreadsheet. The 1,785 and 159 figures come from the internal ballot-im
 comparison system; the spreadsheet is a county-level aggregate that uses a different counting
 unit. We document our reconciliation attempts below.
 
-**No outcome was changed** by any discrepancy found in this audit.
+The discrepancies identified here do not put the outcome of any contest in doubt.
 
 ---
 
@@ -60,8 +60,7 @@ The AuditMark page is the tabulator's CVR represented as printed text within the
 It encodes what the scanner decoded from the QR code — the same information as a structured
 CVR export file — but as an image of text rather than a machine-readable data file.
 **The public ballot image library therefore does contain per-ballot CVR information**,
-accessible by OCR of page 3. A previous version of this report incorrectly stated that the
-TIFF files contain no CVR information; that was based on inspecting only page 1.
+accessible by OCR of page 3.
 
 **Comparison Enhanced Voting performs:**
 
@@ -102,17 +101,18 @@ ballots across 13 counties where the printer failed to produce readable human-re
 while still producing a valid barcode. The scanner accepted these ballots (the barcode was
 intact), the votes were counted from the barcode, but Enhanced Voting could not apply OCR
 and therefore could not verify that the barcode correctly represented the voter's choices.
-These were reported separately as "unreadable" rather than as discrepancies. Voters who
-cast these ballots also had no text to review at the polling place. This is the specific
-scenario where QR-vs-text detection fails.
+These were reported separately as "unreadable" rather than as discrepancies. Whether the
+unreadability reflects a printer failure (physical ballot also lacked legible text) or a
+scanner/image-capture failure (stored image degraded but original paper was readable) is
+not specified in the report. Either way, OCR-based QR-vs-text verification is impossible
+for these ballots.
 
-**For HMPB (absentee/hand-marked) ballots:** The original tabulation uses the Dominion
-scanner's optical mark recognition on the physical paper. The audit uses OCR/OMR on stored
-digital images of that paper. Small differences are plausible: image resolution, scan angle,
-or lighting variation can shift whether a borderline-filled bubble crosses the acceptance
-threshold. Human reviewer judgment is also involved when the system flags uncertain marks.
-The 1–2 vote discrepancies typical of the data are most consistent with this OMR-threshold
-and reviewer-judgment effect on HMPB ballots.
+**For HMPB (absentee/hand-marked) ballots:** Both Dominion's original tabulation and
+Enhanced Voting's audit run OMR on the same stored TIFF image — the physical paper is not
+re-scanned. Any discrepancy therefore reflects a difference in OMR algorithm or mark-
+acceptance threshold between the two software systems, or human reviewer judgment when
+ambiguous marks are flagged for manual review. The 1–2 vote discrepancies typical of the
+data are most consistent with this algorithm-threshold or reviewer-judgment effect.
 
 ---
 
@@ -183,11 +183,9 @@ The SOS does not warrant completeness or accuracy of the images.
   or Democratic). All ballots of that style appear in the same folder regardless of which
   scanner or voting mode processed them. Evans County had 19 unique ballot styles across
   1,641 total ballots.
-- **CVR information IS present in the images:** Page 3 of each TIFF contains the tabulator's
+- **CVR information present in the images:** Page 3 of each TIFF contains the tabulator's
   per-ballot interpretation. The public ballot image library therefore includes per-ballot
-  CVR data, accessible by OCR of page 3. A previous version of this report incorrectly
-  stated the TIFFs contain no CVR information; that was based on inspecting TIFF metadata
-  tags and only reading page 1.
+  CVR data, accessible by OCR of page 3.
 - **Complete count verified:** Evans County's 1,641 image files match the sum of all batch
   totals in the Evans County ballot manifest exactly (447+446+340+339+25+25+17+2 = 1,641).
   Evans County had **zero discrepancies** in the contest results comparison spreadsheet.

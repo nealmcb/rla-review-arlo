@@ -1,0 +1,77 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Host mcusercontent.com:443 was resolved.
+* IPv6: 2600:9000:2020:3800:9:effd:fb40:93a1, 2600:9000:2020:9e00:9:effd:fb40:93a1, 2600:9000:2020:6200:9:effd:fb40:93a1, 2600:9000:2020:de00:9:effd:fb40:93a1, 2600:9000:2020:fe00:9:effd:fb40:93a1, 2600:9000:2020:5c00:9:effd:fb40:93a1, 2600:9000:2020:1a00:9:effd:fb40:93a1, 2600:9000:2020:d400:9:effd:fb40:93a1
+* IPv4: 52.84.199.65, 52.84.199.30, 52.84.199.103, 52.84.199.111
+*   Trying [2600:9000:2020:3800:9:effd:fb40:93a1]:443...
+* ALPN: curl offers h2,http/1.1
+} [5 bytes data]
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+} [1572 bytes data]
+*  CAfile: /etc/ssl/certs/ca-certificates.crt
+*  CApath: /etc/ssl/certs
+{ [5 bytes data]
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+{ [1210 bytes data]
+* TLSv1.3 (IN), TLS change cipher, Change cipher spec (1):
+{ [1 bytes data]
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+{ [19 bytes data]
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+{ [3852 bytes data]
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+} [1 bytes data]
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+* SSL connection using TLSv1.3 / TLS_AES_128_GCM_SHA256 / X25519MLKEM768 / RSASSA-PSS
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=mcusercontent.com
+*  start date: Aug 14 00:00:00 2025 GMT
+*  expire date: Sep 12 23:59:59 2026 GMT
+*  subjectAltName: host "mcusercontent.com" matched cert's "mcusercontent.com"
+*  issuer: C=US; O=Amazon; CN=Amazon RSA 2048 M04
+*  SSL certificate verify ok.
+*   Certificate level 0: Public key type RSA (2048/112 Bits/secBits), signed using sha256WithRSAEncryption
+*   Certificate level 1: Public key type RSA (2048/112 Bits/secBits), signed using sha256WithRSAEncryption
+*   Certificate level 2: Public key type RSA (2048/112 Bits/secBits), signed using sha256WithRSAEncryption
+* Connected to mcusercontent.com (2600:9000:2020:3800:9:effd:fb40:93a1) port 443
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://mcusercontent.com/bb95d9c7cf4b94c9f44421f7c/files/91ad12e4-f198-ba89-17aa-266a3e7960c1/final_audit_report_November_4_2025_Municipal_General_Special_Election_2025_11_17T17_06_00_00.01.csv
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: mcusercontent.com]
+* [HTTP/2] [1] [:path: /bb95d9c7cf4b94c9f44421f7c/files/91ad12e4-f198-ba89-17aa-266a3e7960c1/final_audit_report_November_4_2025_Municipal_General_Special_Election_2025_11_17T17_06_00_00.01.csv]
+* [HTTP/2] [1] [user-agent: curl/8.14.1]
+* [HTTP/2] [1] [accept: */*]
+} [5 bytes data]
+> GET /bb95d9c7cf4b94c9f44421f7c/files/91ad12e4-f198-ba89-17aa-266a3e7960c1/final_audit_report_November_4_2025_Municipal_General_Special_Election_2025_11_17T17_06_00_00.01.csv HTTP/2
+> Host: mcusercontent.com
+> User-Agent: curl/8.14.1
+> Accept: */*
+> 
+* Request completely sent off
+{ [5 bytes data]
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+{ [157 bytes data]
+< HTTP/2 200 
+< content-type: application/octet-stream
+< date: Wed, 01 Jul 2026 21:15:45 GMT
+< x-amzn-trace-id: Root=1-6a458381-0a2cd6e707f916002668b843;Parent=2543ebf59060d66f;Sampled=0;Lineage=1:562af1e5:0
+< x-transaction-id: 6d60ad1c-aa9e-4a1e-a952-9a9ffb859f50
+< x-amzn-requestid: 6d60ad1c-aa9e-4a1e-a952-9a9ffb859f50
+< x-amzn-remapped-content-length: 62212
+< x-gallery-source: s3
+< cache-control: public, max-age=28800
+< x-cache: Miss from cloudfront
+< via: 1.1 4cb743108fdda0a6f93235ad094cf30e.cloudfront.net (CloudFront)
+< x-amz-cf-pop: DFW59-P6
+< x-amz-cf-id: VMvxGMY4YkkGqf-jLczamwjog0b0X79hIXBoaN_ED2_QSN6KM3c1nQ==
+< 
+{ [8192 bytes data]
+100 62212    0 62212    0     0   143k      0 --:--:-- --:--:-- --:--:--  143k
+* Connection #0 to host mcusercontent.com left intact

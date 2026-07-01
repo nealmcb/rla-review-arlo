@@ -7,8 +7,8 @@ title: RLA Review — Arlo
 
 Independent review and transparency analysis of Risk-Limiting Audits conducted using [Arlo](https://github.com/votingworks/arlo) (VotingWorks).
 
-**Version:** v0.17 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp;
-[v0.17 tag](https://github.com/nealmcb/rla-review-arlo/releases/tag/v0.17) &nbsp;·&nbsp;
+**Version:** v0.18 &nbsp;·&nbsp; **Review timestamp:** 2026-07-01T00:00:00Z &nbsp;·&nbsp;
+[v0.18 tag](https://github.com/nealmcb/rla-review-arlo/releases/tag/v0.18) &nbsp;·&nbsp;
 [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp;
 [Comments / Issues](https://github.com/nealmcb/rla-review-arlo/issues)
 
@@ -18,6 +18,7 @@ Independent review and transparency analysis of Risk-Limiting Audits conducted u
 
 | Audit | Contests | Risk Levels | Status |
 |-------|----------|-------------|--------|
+| [Georgia November 4, 2025 Special Election](2025-11-04-special/) | PSC District 2 | 3.4% | ✓ Risk limit met |
 | [Georgia May 19, 2026 General Primary](2026-05-19-primary/) | US Senate (R), Governor (D) | 4.91% / 4.17% | ✓ Risk limit met |
 
 ---
