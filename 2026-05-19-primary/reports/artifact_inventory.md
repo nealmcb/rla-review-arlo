@@ -5,7 +5,7 @@ title: Artifact Inventory
 
 # Artifact Inventory — Georgia May 19, 2026 RLA
 
-**Version:** v0.8 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
+**Version:** v0.9 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
 
 ---
 
@@ -86,6 +86,25 @@ All files served via MailChimp CDN (mcusercontent.com → CloudFront).
 - 5,640 total batch rows
 - Candidates: 5 Republican US Senate, 7 Democratic Governor
 - Column headers follow pattern: `{Contest} - {Party} - {Candidate}`
+
+---
+
+## Ballot Image Library
+
+Raw ballot images for the May 19, 2026 primary are available at
+`https://sos.ga.gov/ballot-image-library`. As of July 1, 2026:
+
+| Field | Value |
+|-------|-------|
+| Counties with images posted | 125 of 159 |
+| File naming | `MAY-19-2026--GENERAL-PRIMARY-ELECTION_{COUNTY}.zip` |
+| Sizes observed | 114 MB (Twiggs) to 1.93 GB (Douglas) |
+| Access | Form submission + email verification; 30-minute expiring link |
+| Organization | County-by-county only; no statewide download |
+
+The site is protected by Cloudflare and requires interactive browser access. Images
+were not downloaded for this review. See the [Ballot Image Audit report](ballot_image_audit/)
+for discussion of what the images contain and the batch-linkage open question.
 
 ---
 

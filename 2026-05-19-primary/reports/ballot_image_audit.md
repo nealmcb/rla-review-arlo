@@ -5,7 +5,7 @@ title: Ballot Image Audit Analysis
 
 # Ballot Image Audit Analysis — Georgia May 19, 2026 General Primary
 
-**Version:** v0.8 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
+**Version:** v0.9 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
 
 ---
 
@@ -96,6 +96,37 @@ after June 11.
 
 The 90 additional discrepant candidate rows in the Excel likely represent either newly
 processed precincts or corrections applied between June 11 and June 28.
+
+### Raw Ballot Images
+
+The Georgia SOS makes the underlying ballot images available at
+`https://sos.ga.gov/ballot-image-library`. As of July 1, 2026, 125 of 159 counties had
+uploaded ZIP files for the May 19, 2026 primary. Files are named by county
+(e.g., `MAY-19-2026--GENERAL-PRIMARY-ELECTION_LONG.zip`; Long County: 145 MB) and are
+only available county-by-county — no statewide download exists.
+
+**Access process:** The site requires submitting name, organization, and email address and
+accepting terms of service; an email is then sent with a 30-minute expiring download link.
+The SOS does not warrant completeness or accuracy of the images.
+
+**What the images contain:** Based on the November 2024 ballot image structure (visible
+in the CGG Sumter complaint exhibits), each ballot image packet includes:
+- Page 1: Scanned image of the ballot face (human-readable text and QR code for BMD; marked ovals for HMPB)
+- Page 3: AuditMark metadata record showing Tabulator ID, Poll ID, Ballot ID, and how each vote was counted or adjudicated
+
+**Key open question — batch linkage:** The ZIPs are organized county-by-county. The RLA
+manifest uses batch names like `ICC-Absentee by Mail - 2` for a specific scanner and
+container. It is not publicly documented how the ballot image files within a county ZIP map
+to these batch names, or whether the internal folder/filename structure uses the same
+identifiers. This linkage is essential for anyone wanting to independently verify the
+Enhanced Voting comparison for a specific batch or reconcile images against the RLA sample.
+
+The ballot images for Cherokee, Muscogee, and Henry counties — where systematic
+discrepancies were observed — could in principle be used to examine the specific ballots
+where OCR and tabulation diverged. This requires a researcher to request those county ZIPs,
+identify the relevant precincts or tabulators, and manually or programmatically compare
+the ballot face images against the contest-results spreadsheet. That analysis has not been
+conducted in this review.
 
 ---
 
