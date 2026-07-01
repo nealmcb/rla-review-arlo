@@ -5,7 +5,7 @@ title: Ballot Image Audit Analysis
 
 # Ballot Image Audit Analysis — Georgia May 19, 2026 General Primary
 
-**Version:** v0.16 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
+**Version:** v0.17 &nbsp;·&nbsp; **Review timestamp:** 2026-06-29T23:18:24Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
 
 ---
 
@@ -43,40 +43,53 @@ Audit software. This is a **machine-vs-machine comparison**, not a human hand co
 Both Enhanced Voting reports (Georgia Nov 2024 and South Carolina June 2026) describe three
 data sources supplied by counties:
 
-1. **Ballot images** — scanned images of each ballot (TIFF files). For BMD ballots, these show
-   both a QR code and the human-readable printed text. For HMPB ballots they show filled ovals.
-   Inspection of Evans County's public ballot image ZIP confirmed: only TIFF files are present,
-   with no companion data files and no CVR information embedded in the TIFF tags.
+**Ballot image structure — confirmed from Evans County inspection:** Each numbered TIFF file
+is a **3-page multi-page TIFF**, not a single image:
 
-2. **Cast Vote Records (CVRs)** — per-ballot records of how the voting system interpreted each
-   ballot at scan time. The SC June 2026 report states Enhanced Voting received "ballot image
-   data, batch-level results, and cast vote records" and performed "cross referencing individual
-   ballot tabulation against the cast-vote record for each ballot." The Georgia Nov 2024 report
-   confirms CVR use via in-process findings: the Barrow County test-ballot issue "was found by
-   Enhanced Audit's cast vote record comparison" and the Wilkinson County issue "was found by
-   comparing the cast vote record to the images." Neither report specifies the CVR file format
-   or how ballot images are matched to their CVR records.
+- **Page 1** ("1/2"): Front of BMD ballot — QR code (upper left) and human-readable printed
+  vote selections in three columns across the full-page layout.
+- **Page 2** ("2/2"): Continuation for overflow contests (local judicial races, Board of
+  Education, etc.) — no QR code.
+- **Page 3 (AuditMark)**: A machine-generated text summary page printed by the Dominion
+  tabulator at scan time, structured as plain monospaced text. This page records:
+  - `Scanned on: ICP   Tabulator: 5`
+  - `Poll ID: 3   Ballot ID: 1007`
+  - Every contest name and the machine's recorded selection, one per line
 
-3. **Election results files** — county-level certified totals.
+The AuditMark page is the tabulator's CVR represented as printed text within the image.
+It encodes what the scanner decoded from the QR code — the same information as a structured
+CVR export file — but as an image of text rather than a machine-readable data file.
+**The public ballot image library therefore does contain per-ballot CVR information**,
+accessible by OCR of page 3. A previous version of this report incorrectly stated that the
+TIFF files contain no CVR information; that was based on inspecting only page 1.
 
-The audit's independent tabulation comes from OCR of the ballot images. The Georgia Nov 2024
+**Comparison Enhanced Voting performs:**
+
+| Source | Content |
+|--------|---------|
+| OCR of pages 1–2 | Independent interpretation of human-readable printed text (what the voter was shown) |
+| OCR of page 3 | Tabulator's QR-code-based interpretation (the AuditMark machine record) |
+| Election results files | County-level certified totals |
+
+Comparing the OCR of pages 1–2 against the OCR of page 3 yields a ballot-level check:
+do the human-readable text and the QR-code-encoded record agree? The Georgia Nov 2024
 report states: *"The audit is intended to tabulate the same ballots from the human readable
 text and compare those results against the tabulator's results which were computed from the
-QR codes."*[¹] The SC June 2026 report states: *"Enhanced Audit uses optical character
-recognition (OCR) to examine only the human-readable text on South Carolina's summary
-ballots."*[²] Neither report states whether OCR of the image is cross-checked against an
-independent decode of the QR code from the same image.
+QR codes."*[¹] Zero such discrepancies were found across 5,025,863 Georgia BMD ballots
+(Nov 2024) and 841,485 SC summary ballots (June 2026).[²]
 
-| Comparison | What it detects |
-|------------|----------------|
-| OCR of image text vs. CVR for that ballot | Ballot-level disagreement between printed text and the tabulator's QR-code reading |
-| Aggregate OCR totals vs. election results file | County-level consistency check |
+**Batch linkage via AuditMark:** The Tabulator ID and Ballot ID on page 3 link each ballot
+image to a specific scanner session. For Evans County ballot 0001 from Pre_9: Tabulator 5,
+Poll ID 3, Ballot ID 1007. The RLA manifest names batches as "ED-Veteran's Community Center
+ICP 1 - 0" etc. Mapping between tabulator numbers and RLA batch names requires additional
+county data not in the public ballot image library, but is no longer completely opaque —
+the tabulator ID is present in every ballot image.
 
-**What a discrepancy means — and its limits:** A ballot-level discrepancy means the OCR
-interpretation of the printed text disagrees with the CVR. This could be (a) a genuine
-QR-vs-text encoding error, or (b) an OCR misread. When flagged, human auditors view the
-ballot image to confirm what the printed text shows. The reports do not state whether
-auditors also independently decode the QR code from the image to resolve ambiguity.
+**What a discrepancy means — and its limits:** A discrepancy between page 1–2 OCR and page
+3 OCR could be (a) a genuine QR-vs-text encoding error, (b) an OCR misread on either page,
+or (c) a tampered ballot image. Human auditors review flagged images to determine which.
+The reports do not state whether auditors also independently decode the QR code visible in
+the page 1 image to provide a third, independent read.
 
 Note: Georgia uses Dominion ImageCast X BMDs with QR codes; South Carolina uses ES&S
 ExpressVote BMDs with PDF417 barcodes. Different encoding schemes, same OCR methodology.
@@ -150,39 +163,49 @@ The SOS does not warrant completeness or accuracy of the images.
 **What the images contain — confirmed from Evans County inspection:** The Evans County ZIP
 (`MAY-19-2026--GENERAL-PRIMARY-ELECTION_EVANS.zip`, 128 MB) was inspected directly.
 
-- **Format:** Individual TIFF files, one per ballot. 1-bit bilevel (black/white), CCITT Huffman
-  compressed, 200 DPI, approximately 1728×2100 pixels (~100 KB each).
-- **ZIP structure:** One top-level audit-timestamp folder (e.g., `Audit2026_05_21_10_54_35/`),
-  then one subfolder per ballot style (e.g., `Pre_9-Veteran's Comm Ctr/`). Files within
-  each folder are numbered sequentially: `Pre_9-Veteran's Comm Ctr-0001.tif`, `0002.tif`, …
+- **Format:** Each numbered TIFF file is a **3-page multi-page TIFF**, 1-bit bilevel
+  (black/white), CCITT Huffman compressed, 200 DPI. Page dimensions are approximately
+  1728×2100–2200 pixels; total file size ~100 KB each.
+- **Three-page structure (confirmed from Evans County inspection):**
+  - *Page 1 ("1/2"):* Front of BMD ballot — QR code (upper left) and human-readable vote
+    selections in a columnar layout. This is the face of the printed ballot the voter reviewed.
+  - *Page 2 ("2/2"):* Continuation of the ballot for overflow contests (judicial races, Board
+    of Education, etc.). No QR code on this page.
+  - *Page 3 (AuditMark):* A machine-generated monospaced text summary printed by the Dominion
+    tabulator at scan time. Records: `Scanned on: ICP`, `Tabulator: 5`, `Poll ID: 3`,
+    `Ballot ID: 1007`, and every contest name with the machine's recorded selection. This page
+    is the tabulator's CVR represented as printed text inside the image file.
+- **ZIP structure:** One top-level audit-timestamp folder (`Audit2026_05_21_10_54_35/`),
+  then one subfolder per ballot style (`Pre_9-Veteran's Comm Ctr/`). Files are numbered
+  sequentially: `Pre_9-Veteran's Comm Ctr-0001.tif`, `0002.tif`, …
 - **Ballot styles, not scanner batches:** The `Pre_N` folder identifier is the Dominion
   ballot style number — a unique combination of geographic precinct and party (Republican
   or Democratic). All ballots of that style appear in the same folder regardless of which
-  scanner or voting mode (Election Day, Advance Voting, Absentee) processed them. Evans
-  County had 19 unique ballot styles across 1,641 total ballots.
-- **BMD ballot content:** Each image shows a printed BMD ballot with a QR code (upper left)
-  and the complete human-readable vote record in three columns — every contest and the
-  voter's choice. Choices are fully legible. Republican and Democratic voters appear in
-  separate ballot-style folders (e.g., Pre_9 = Republican; Pre_33 = Democratic).
-- **No embedded metadata:** The TIFF files contain no tabulator ID, batch name, poll ID, or
-  CVR-linkage information. The "AuditMark" metadata pages visible in the Sumter complaint
-  exhibits are an internal Dominion platform display; they do not appear in the publicly
-  exported TIFF files.
-- **Complete count verified:** Evans County's 1,641 images match the sum of all batch totals
-  in the Evans County ballot manifest exactly (447+446+340+339+25+25+17+2 = 1,641). Evans
-  County had **zero discrepancies** in the contest results comparison spreadsheet.
+  scanner or voting mode processed them. Evans County had 19 unique ballot styles across
+  1,641 total ballots.
+- **CVR information IS present in the images:** Page 3 of each TIFF contains the tabulator's
+  per-ballot interpretation. The public ballot image library therefore includes per-ballot
+  CVR data, accessible by OCR of page 3. A previous version of this report incorrectly
+  stated the TIFFs contain no CVR information; that was based on inspecting TIFF metadata
+  tags and only reading page 1.
+- **Complete count verified:** Evans County's 1,641 image files match the sum of all batch
+  totals in the Evans County ballot manifest exactly (447+446+340+339+25+25+17+2 = 1,641).
+  Evans County had **zero discrepancies** in the contest results comparison spreadsheet.
 
-**Batch-linkage gap:** Images are organized by ballot style, not by scanner batch. The RLA
-manifest uses batch names like `ED-Veteran's Community Center ICP 1 - 0` (340 ballots) and
-`AV-Elections Office ICP 1 - 0` (447 ballots). Ballots from any given scanner batch are
-spread across multiple ballot-style folders. Without a CVR mapping each ballot to its scanner
-session, there is no way to identify which images correspond to a specific RLA batch. Georgia
-does not publish CVR data.
+**Batch-linkage via AuditMark:** The Tabulator ID on page 3 of each TIFF links the ballot
+to a specific scanner session. For Evans County, the inspected ballot shows Tabulator 5,
+Poll ID 3, Ballot ID 1007. The RLA manifest names batches as `ED-Veteran's Community Center
+ICP 1 - 0` (340 ballots) and `AV-Elections Office ICP 1 - 0` (447 ballots). The tabulator
+number in the AuditMark and the `ICP N` scanner identifier in the batch name likely
+correspond, but translating between them (tabulator 5 → which ICP batch?) requires county
+data not in the public library. Batch-level linkage is therefore partially constrained by the
+AuditMark data but not fully resolved from the public image library alone.
 
-Independent verification using ballot images therefore requires re-running OCR across all
-images for a county and comparing county-level totals against the certified results — which
-is exactly what Enhanced Voting does. What cannot be done from the images alone is
-verifying or disputing the tally for a specific scanner batch.
+Independent verification using ballot images can re-run OCR on all pages per county —
+comparing page 1–2 text against page 3 AuditMark text for each ballot, and aggregating to
+county totals for comparison against certified results. That is what Enhanced Voting does.
+What cannot be done from the public image library alone is reliably identifying which images
+correspond to a specific named RLA batch without an external tabulator-ID→batch-name mapping.
 
 The ballot images for Cherokee, Muscogee, and Henry counties — where systematic discrepancies
 were observed — could in principle be used for county-level OCR re-runs. That analysis has
@@ -196,11 +219,17 @@ Democratic voter in that ballot style. If the public voter roll for that precinc
 one person voted a Democratic primary ballot on May 19, 2026, that person is identifiable,
 and their complete vote record (every contest, every choice) is visible on the image.
 
+The AuditMark (page 3) adds a further data layer: each ballot carries a Tabulator ID,
+Poll ID, and Ballot ID assigned by the scanner. These sequence numbers can potentially be
+cross-referenced with scanner session logs or precinct-level chain-of-custody records,
+providing an additional path to identifying individual ballots when combined with voter roll
+data and ballot-style organization.
+
 This concern extends to any ballot style folder with a small enough count that cross-
 referencing with voter roll data narrows down the identity. In Evans County alone, several
 folders have counts under 20 (Pre_24: 9, Pre_22: 14, Pre_29: 14, Pre_33: 1). Across 125
 counties with images posted, many rural counties will have similarly thin precinct-party
-combinations.
+combinations. No minimum-count suppression is applied before images are published.
 
 Georgia law generally provides ballot secrecy, and the Secretary of State's terms of
 service state that images are provided for transparency and audit purposes. However, the
