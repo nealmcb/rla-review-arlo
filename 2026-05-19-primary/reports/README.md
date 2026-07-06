@@ -5,7 +5,7 @@ title: Executive Summary
 
 # Georgia May 19, 2026 General Primary RLA — Executive Summary
 
-**Version:** v0.20 &nbsp;·&nbsp; **Review timestamp:** 2026-07-01T21:50:00Z  
+**Version:** v0.21 &nbsp;·&nbsp; **Review timestamp:** 2026-07-01T21:50:00Z  
 **Repository:** [github.com/nealmcb/rla-review-arlo](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [Back to main page](../)
 
 ---
@@ -164,6 +164,7 @@ The files currently posted are the same bytes committed in the May 28 tweet. The
 | `src/search_for_hash.py` | Search for SHA256 hash values |
 | `src/inspect_artifacts.py` | Inspect and summarize audit report |
 | `src/summarize_manifests.py` | Summarize ballot manifest data |
+| `src/verify_margins.py` | Derive diluted margins from CSV and cross-check against round summary |
 
 ---
 
