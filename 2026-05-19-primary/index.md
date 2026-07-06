@@ -30,7 +30,7 @@ title: Georgia May 2026 RLA — Review
 
 ## Key Findings
 
-**What the audit covered:** Arlo BATCH\_COMPARISON/MACRO audit of two contests — US Senate Republican primary (Dooley vs. Carter runoff) and Democratic Governor's primary (Bottoms vs. Esteves) — across all 159 Georgia counties, 706 batches hand-counted, 5% risk limit met for both contests.
+**What the audit covered:** Arlo BATCH\_COMPARISON/MACRO audit of two contests — US Senate Republican primary (Collins vs. Dooley runoff) and Democratic Governor's primary (Bottoms vs. Esteves) — across all 159 Georgia counties, 706 batches hand-counted, 5% risk limit met for both contests.
 
 **What this review verifies:**
 

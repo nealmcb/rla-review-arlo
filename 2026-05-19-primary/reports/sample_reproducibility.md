@@ -177,7 +177,7 @@ From the audit report:
 - **US Senate - Rep**: 138 draws (with replacement) → 134 unique batches + 4 duplicates drawn twice; 262 additional EXTRA batches combined into larger batches for counting
 - **Governor - Dem**: 18 draws → 18 unique batches
 
-The small diluted margin for the Senate race (0.0222) requires a larger sample; the large margin for the Governor race (0.1952) requires only 18 batches.
+The small diluted margin for the Senate race (0.0452, Collins vs. Dooley) requires a larger sample; the large margin for the Governor race (0.1952, Bottoms vs. Esteves) requires only 18 batches.
 
 ---
 

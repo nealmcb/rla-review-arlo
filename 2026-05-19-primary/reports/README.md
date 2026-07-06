@@ -62,7 +62,7 @@ On May 28, 2026 at 11:52 AM EDT, @GaSecofState published a four-tweet thread com
 | Total ballots in manifests | 2,081,564 |
 | Counties | 159 |
 | Total manifest batches | 5,641 |
-| US Senate Rep diluted margin | 0.0222 (Dooley vs. Carter) |
+| US Senate Rep diluted margin | 0.0452 (Collins vs. Dooley: 94,110 / 2,081,564) |
 | Gov Dem diluted margin | 0.1952 (Bottoms vs. Esteves) |
 
 ---

@@ -162,7 +162,7 @@ The audit report column "Vote Totals from Batches" matches "Vote Totals" for bot
 ### Diluted Margins
 
 Computed using Arlo's Contest class:
-- **US Senate - Rep diluted margin**: 0.0222 (Dooley vs. Carter: 46,307 / 2,081,564)
+- **US Senate - Rep diluted margin**: 0.0452 (Collins vs. Dooley: 94,110 / 2,081,564)
   - This is the margin that drives the MACRO sample size — small margin → large sample
 - **Governor - Dem diluted margin**: 0.1952 (Bottoms vs. Esteves: 406,242 / 2,081,564)
   - Large margin → small sample (only 18 batches needed)
