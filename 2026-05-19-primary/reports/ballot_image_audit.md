@@ -190,6 +190,27 @@ The SOS does not warrant completeness or accuracy of the images.
   totals in the Evans County ballot manifest exactly (447+446+340+339+25+25+17+2 = 1,641).
   Evans County had **zero discrepancies** in the contest results comparison spreadsheet.
 
+**Worked example — Quitman County: party/precinct reconciliation from folder structure:**
+The `Pre_N` folder names encode both party primary and precinct — `Pre_001` = Democratic
+primary, `Pre_002` = Republican primary, with the precinct name appended. Counting image
+files by folder in `MAY-19-2026--GENERAL-PRIMARY-ELECTION_QUITMAN.zip` gives:
+
+| Folder | Party | Precinct | Images |
+|--------|-------|----------|--------|
+| `Pre_001-Georgetown` | Democratic | Georgetown | 178 |
+| `Pre_002-Georgetown` | Republican | Georgetown | 215 |
+| `Pre_001-Morris` | Democratic | Morris | 6 |
+| `Pre_002-Morris` | Republican | Morris | 30 |
+| **Total** | | | **429** |
+
+This matches Quitman County's 429-ballot manifest total exactly, giving a verified
+county-wide split of **184 Democratic / 245 Republican primary ballots**. This
+party/precinct breakdown is fully present in the image library folder structure but is
+invisible in the RLA batch report, which lists batches by scanner and voting mode only.
+The voter-privacy concern noted above applies here: with only 6 Democratic ballots in the
+Morris precinct folder, cross-referencing with the public voter roll would likely identify
+those voters individually.
+
 **Batch-linkage via AuditMark:** The Tabulator ID on page 3 of each TIFF links the ballot
 to a specific scanner session. For Evans County, the inspected ballot shows Tabulator 5,
 Poll ID 3, Ballot ID 1007. The RLA manifest names batches as `ED-Veteran's Community Center
