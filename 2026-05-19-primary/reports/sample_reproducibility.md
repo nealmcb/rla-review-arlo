@@ -174,10 +174,40 @@ Arlo stores spaces — `BEN-HILL` → `BEN HILL`, `JEFF-DAVIS` → `JEFF DAVIS`.
 ### MACRO Sample Sizes
 
 From the audit report:
-- **US Senate - Rep**: 138 draws (with replacement) → 134 unique batches + 4 duplicates drawn twice; 262 additional EXTRA batches combined into larger batches for counting
+- **US Senate - Rep**: 138 ticket draws (PPEB with replacement) → 134 unique audit batches; 4 draws landed on containers already subsumed into a combined batch (Fulton County); 262 EXTRA batches were retrieved incidentally alongside the 134 primary samples
 - **Governor - Dem**: 18 draws → 18 unique batches
 
 The small diluted margin for the Senate race (0.0452, Collins vs. Dooley) requires a larger sample; the large margin for the Governor race (0.1952, Bottoms vs. Esteves) requires only 18 batches.
+
+### Batch Count and Ballot Count Reconciliation
+
+The audit report's SAMPLED BATCHES section has **707 rows** but represents **706 actual batches** and **341,816 total audited ballots**. Several figures in the CSV may appear inconsistent; they reconcile as follows.
+
+**"Sample Size" (138 / 18):** The number of PPEB ticket draws Arlo estimated it needed to reach the 5% risk limit assuming zero discrepancies. This is a draw count, not a batch count or ballot count. Arlo's `get_sample_sizes()` computes this before sampling using the diluted margin; it is capped at the total batch count.
+
+**134 unique Senate audit batches vs. 138 draws:** Arlo's MACRO audit combines physically small batches into single audit units when they are too small to bound error on individually (e.g., Fulton County's `ICC - AV-Palmetto Library ICP 3` combines 7 scanner containers). The PPEB algorithm draws individual containers, but all containers in a combined group are counted together as one batch. When multiple draws land on containers within the same combined group, they collapse to a single audit row — hence 138 draws → 134 unique rows. The 4-draw gap is entirely accounted for by Fulton County combined batches.
+
+**"Batches Sampled: 148" in the round summary:** The total rows with a primary-sample (non-EXTRA) ticket for at least one contest — i.e., the batches actually selected by PPEB. Decomposed by ticket column:
+
+| Ticket type | Senate | Governor |
+|-------------|--------|----------|
+| REAL only (other contest empty or EXTRA) | 130 | 14 |
+| REAL for both contests | 4 | 4 |
+| **Total REAL** | **134** | **18** |
+
+Four batches were selected for both Senate and Governor; 134 + 18 − 4 = **148** ✓
+
+**707 CSV rows vs. 706 actual batches:** One row at the bottom of the SAMPLED BATCHES section has `Jurisdiction Name = "Totals"` — it is Arlo's own subtotal row appended to the export, not an audited batch. Its "Ballots in Batch" field is 341,816 (the sum of the 706 real rows). Naïve summation of all 707 rows gives 341,816 + 341,816 = **683,632 = 2 × 341,816**. The correct total is **341,816 ballots across 706 audited batches**.
+
+**341,816 total vs. 188,534 "Ballots Sampled":** The round-summary "Ballots Sampled: 188,534" covers only the 148 primary-sample batches. The remaining 341,816 − 188,534 = **153,282 ballots** are in the **558 EXTRA batches** — batches that were physically retrieved and hand-counted incidentally because accessing the sampled batch in the same storage location required handling adjacent containers.
+
+| Batch category | Rows | Ballots |
+|----------------|------|---------|
+| Primary sample (REAL ticket, either contest) | 148 | 188,534 |
+| EXTRA only (no REAL ticket) | 558 | 153,282 |
+| **Total audited** | **706** | **341,816** |
+| Totals summary row (Arlo export artifact) | 1 | 341,816 |
+| **Naïve CSV sum (all 707 rows)** | **707** | **683,632** |
 
 ---
 
