@@ -5,7 +5,7 @@ title: Sample Reproducibility
 
 # Sample Reproducibility Analysis — Georgia May 19, 2026 RLA
 
-**Version:** v0.21 &nbsp;·&nbsp; **Review timestamp:** 2026-07-01T21:50:00Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
+**Version:** v0.22 &nbsp;·&nbsp; **Review timestamp:** 2026-07-01T21:50:00Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
 
 ---
 
@@ -177,7 +177,7 @@ From the audit report:
 - **US Senate - Rep**: 138 ticket draws (PPEB with replacement) → 134 unique audit batches; 4 draws landed on containers already subsumed into a combined batch (Fulton County); 262 EXTRA batches were retrieved incidentally alongside the 134 primary samples
 - **Governor - Dem**: 18 draws → 18 unique batches
 
-The small diluted margin for the Senate race (0.0452, Collins vs. Dooley) requires a larger sample; the large margin for the Governor race (0.1952, Bottoms vs. Esteves) requires only 18 batches.
+The **binding** diluted margin for the Senate race is **0.0222 (Dooley vs. Carter, 46,307 / 2,081,564)** — because Collins received only 40.5% of Republican votes (no majority), Arlo internally promotes the contest to 2 winners (both Collins and Dooley must advance to the runoff). This means the tightest hypothesis being tested is whether Dooley correctly outscored Carter for the #2 runoff spot, and that margin (0.0222) is what drives U and the sample size. The margin between the two advancing candidates (Collins vs. Dooley) is 0.0452; see the [Manifest and Tally Analysis](../manifest_and_tally_analysis/) for the full table of hypotheses. The Governor race has a clear 1-winner majority margin of 0.1952 (Bottoms vs. Esteves), requiring only 18 batches.
 
 ### Batch Count and Ballot Count Reconciliation
 

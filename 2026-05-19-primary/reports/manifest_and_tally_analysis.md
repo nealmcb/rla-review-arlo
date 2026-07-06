@@ -5,7 +5,7 @@ title: Manifest and Tally Analysis
 
 # Manifest and Candidate Tally Analysis — Georgia May 19, 2026 RLA
 
-**Version:** v0.21 &nbsp;·&nbsp; **Review timestamp:** 2026-07-01T21:50:00Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
+**Version:** v0.22 &nbsp;·&nbsp; **Review timestamp:** 2026-07-01T21:50:00Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
 
 ---
 
@@ -159,13 +159,67 @@ Candidate columns follow the pattern: `{Contest} - {Party} - {Candidate Name}`
 
 The audit report column "Vote Totals from Batches" matches "Vote Totals" for both contests (verified for all candidates), confirming that the candidate totals ZIP sums correctly to the reported contest totals.
 
-### Diluted Margins
+### Diluted Margins and Statistical Hypotheses
 
-Computed using Arlo's Contest class:
-- **US Senate - Rep diluted margin**: 0.0452 (Collins vs. Dooley: 94,110 / 2,081,564)
-  - This is the margin that drives the MACRO sample size — small margin → large sample
-- **Governor - Dem diluted margin**: 0.1952 (Bottoms vs. Esteves: 406,242 / 2,081,564)
-  - Large margin → small sample (only 18 batches needed)
+Stark's MACRO audit ([Stark 2009](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1443314)) tests a precise null hypothesis: **"the reported outcome is incorrect."** The test statistic accumulates evidence against this null as batches are hand-counted; when the evidence is strong enough, the audit can stop at the desired risk limit (here, 5%). The binding constraint on the sample size is the **smallest margin** across all the sub-hypotheses being tested simultaneously.
+
+---
+
+**US Senate - Republican (subject to runoff law)**
+
+Collins received 369,638 out of 912,683 Republican votes = **40.5%** — well short of the 50% threshold (456,342 votes) that would allow him to win outright. He fell short of a majority by **86,704 votes**. Georgia law therefore requires a runoff between the top two vote-getters: Collins and Dooley.
+
+Because no candidate reached a majority, Arlo's `sampler_contest.py` internally promotes the contest from `num_winners = 1` to `num_winners = 2` — both Collins and Dooley must correctly advance. This changes the audit's task: it must simultaneously test **six candidate-pair hypotheses** (each winner vs. each loser) and **two majority-threshold hypotheses** (confirming that neither Collins nor Dooley secretly crossed 50%):
+
+| Hypothesis tested | Margin V_wl (votes) | Diluted margin | Role |
+|-------------------|--------------------:|---------------:|------|
+| Dooley vs. Carter — did the right candidate take the 2nd runoff spot? | 46,307 | **0.0222** | **Binding — largest per-batch error bound; drives U, sample size, p-value** |
+| Collins vs. Carter | 140,417 | 0.0675 | |
+| Collins vs. McColumn | 341,192 | 0.1639 | |
+| Collins vs. Coyne | 359,788 | 0.1729 | |
+| Dooley vs. McColumn | 247,082 | 0.1187 | |
+| Dooley vs. Coyne | 265,678 | 0.1276 | |
+| Collins majority-threshold check (did Collins correctly fall short of 50%?) | 173,407 | 0.0833 | Threshold check; V_wl = 912,683 − 2 × 369,638 |
+| Dooley majority-threshold check (did Dooley correctly fall short of 50%?) | 361,627 | 0.1738 | Threshold check; V_wl = 912,683 − 2 × 275,528 |
+| Collins vs. Dooley — did the right candidate place first? | 94,110 | 0.0452 | Candidate pair; not binding |
+
+The **binding diluted margin is 0.0222 (Dooley vs. Carter, 46,307 / 2,081,564)**, because that hypothesis has the smallest margin and therefore the largest per-batch error bound in Arlo's MACRO formula. This is the quantity that Arlo used to compute U (the total error bound across all 5,640 batches), which in turn determined the sample size:
+
+- U = 45.95 (computed by `src/reproduce_risk.py` from the public candidate totals)
+- p_mult = 1 − 1/U = 0.9782
+- Zero-discrepancy sample size estimate: log(0.05) / log(0.9782) ≈ **136 draws** — consistent with the actual 138
+
+The **0.0452 diluted margin (Collins vs. Dooley, 94,110 / 2,081,564)** describes the gap between the two advancing candidates — a meaningful quantity for understanding how close the runoff field is, and the one an independent tool would compute if it modeled this as a 1-winner "who placed first?" question rather than a "which 2 advance to the runoff?" question. Both margins are correct; they answer different questions.
+
+---
+
+**Governor - Democratic (no runoff)**
+
+Bottoms received 608,051 out of 1,081,493 Democratic votes = **56.2%** — a clear majority, 151,710 votes above the threshold. No runoff is needed. Arlo treats this as a standard 1-winner contest: only candidate-pair hypotheses (Bottoms vs. each of 6 opponents) are tested, and the binding constraint is simply Bottoms vs. Esteves.
+
+| Hypothesis tested | Margin V_wl (votes) | Diluted margin | Role |
+|-------------------|--------------------:|---------------:|------|
+| Bottoms vs. Esteves | 406,242 | **0.1952** | **Binding** |
+| Bottoms vs. Thurmond | 468,309 | 0.2250 | |
+| Bottoms vs. Duncan | 532,334 | 0.2558 | |
+| Bottoms vs. Jackson | 583,009 | 0.2801 | |
+| Bottoms vs. Duffy | 589,247 | 0.2831 | |
+| Bottoms vs. Brown | 595,723 | 0.2862 | |
+
+The large margin (0.1952) means only 18 PPEB draws were needed; the audit reproduces exactly to machine precision (see `src/reproduce_risk.py`).
+
+---
+
+**Risk-level reproduction**
+
+`src/reproduce_risk.py` implements Arlo's `compute_U()` and `compute_risk()` formulas verbatim and reproduces both risk levels from the public artifacts:
+
+| Contest | Computed risk | Reported risk | Difference | Passes 5%? |
+|---------|-------------:|-------------:|----------:|------------|
+| US Senate - Rep | 4.8994% | 4.9084% | 9.0e-05 | Yes ✓ |
+| Governor - Dem | 4.1726% | 4.1726% | 2.1e-11 | Yes ✓ |
+
+The 9e-05 Senate residual arises from Arlo's internal Decimal arithmetic vs. Python float; the data fully support the reported outcomes.
 
 ---
 

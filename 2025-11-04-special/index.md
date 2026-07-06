@@ -6,8 +6,8 @@ title: Georgia November 2025 Special Election — Review
 # Georgia November 4, 2025 Special Election
 ## Risk-Limiting Audit and Ballot Image Audit — Transparency Review
 
-**Version:** v0.21 &nbsp;·&nbsp; **Review timestamp:** 2026-07-01T21:50:00Z &nbsp;·&nbsp;
-[v0.21 tag](https://github.com/nealmcb/rla-review-arlo/releases/tag/v0.21) &nbsp;·&nbsp;
+**Version:** v0.22 &nbsp;·&nbsp; **Review timestamp:** 2026-07-01T21:50:00Z &nbsp;·&nbsp;
+[v0.22 tag](https://github.com/nealmcb/rla-review-arlo/releases/tag/v0.22) &nbsp;·&nbsp;
 [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp;
 [Comments / Issues](https://github.com/nealmcb/rla-review-arlo/issues)
 

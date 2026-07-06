@@ -5,7 +5,7 @@ title: Executive Summary
 
 # Georgia May 19, 2026 General Primary RLA — Executive Summary
 
-**Version:** v0.21 &nbsp;·&nbsp; **Review timestamp:** 2026-07-01T21:50:00Z  
+**Version:** v0.22 &nbsp;·&nbsp; **Review timestamp:** 2026-07-01T21:50:00Z  
 **Repository:** [github.com/nealmcb/rla-review-arlo](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [Back to main page](../)
 
 ---
@@ -62,8 +62,9 @@ On May 28, 2026 at 11:52 AM EDT, @GaSecofState published a four-tweet thread com
 | Total ballots in manifests | 2,081,564 |
 | Counties | 159 |
 | Total manifest batches | 5,641 |
-| US Senate Rep diluted margin | 0.0452 (Collins vs. Dooley: 94,110 / 2,081,564) |
-| Gov Dem diluted margin | 0.1952 (Bottoms vs. Esteves) |
+| US Senate Rep — binding diluted margin | 0.0222 (Dooley vs. Carter: 46,307 / 2,081,564) — drives U and sample size; protects Dooley's #2 runoff spot |
+| US Senate Rep — runoff-field diluted margin | 0.0452 (Collins vs. Dooley: 94,110 / 2,081,564) — gap between the two advancing candidates |
+| Gov Dem diluted margin | 0.1952 (Bottoms vs. Esteves: 406,242 / 2,081,564) |
 
 ---
 
@@ -165,6 +166,7 @@ The files currently posted are the same bytes committed in the May 28 tweet. The
 | `src/inspect_artifacts.py` | Inspect and summarize audit report |
 | `src/summarize_manifests.py` | Summarize ballot manifest data |
 | `src/verify_margins.py` | Derive diluted margins from CSV and cross-check against round summary |
+| `src/reproduce_risk.py` | Reproduce MACRO risk levels from public artifacts; verify data support outcomes |
 
 ---
 
