@@ -126,7 +126,7 @@ The per-batch discrepancy rate and the per-ballot vote discrepancy rate tell ver
 
 5. **No separate "HMPB/BMD" flag in the published artifacts.** The ballot type must be inferred from batch names. Georgia could improve transparency by explicitly tagging each batch with its ballot type and ballot count in the manifest and audit report. This would also make the batch-size-driven discrepancy rate effect immediately visible in the official artifacts.
 
-For deeper analysis — including the Derrick Jackson directional pattern, the TOOMBS 1-ballot anomaly, batch-size reduction recommendations, and the case that discrepancy causes are undocumented — see the [Discrepancy Analysis report](../discrepancy_analysis/).
+For deeper analysis — including the Derrick Jackson directional pattern, the TOOMBS 1-ballot anomaly, batch-size reduction recommendations, and the case that discrepancy causes are undocumented — see the [Discrepancy Analysis report](discrepancy_analysis.md).
 
 ---
 
@@ -257,6 +257,6 @@ These gaps do not mean the audit was wrong. They mean the audit record does not 
 
 These gaps do not indicate the audit outcome was wrong. Georgia's 2026 RLA is among the strongest public audit records in the country. The goal of this analysis is to identify the specific procedural and publication steps that would move the record from "conducted and credible" to "independently reproducible by any member of the public."
 
-See the [Executive Summary](../README/) for the full recommendation list, and [Arlo Issue #2351](https://github.com/votingworks/arlo/issues/2351) for the ongoing discussion of transparency best practices.
+See the [Executive Summary](README.md) for the full recommendation list, and [Arlo Issue #2351](https://github.com/votingworks/arlo/issues/2351) for the ongoing discussion of transparency best practices.
 
 Comments on this analysis are welcome as [GitHub Issues](https://github.com/nealmcb/rla-review-arlo/issues).

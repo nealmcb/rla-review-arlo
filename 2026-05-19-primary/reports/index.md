@@ -13,11 +13,11 @@ title: Reports
 
 | Report | Description |
 |--------|-------------|
-| [Executive Summary](README/) | Timeline, key values, SHA256 hash table, transparency gaps, recommendations |
-| [Hash Commitment Analysis](hash_commitment/) | Verification of the @GaSecofState tweet hashes — **both VERIFIED** |
-| [Transparency Gap Analysis](transparency_gap_analysis/) | PR #2350 checklist; BMD vs. HMPB discrepancy rate table |
-| [Sample Reproducibility](sample_reproducibility/) | PPEB/MACRO algorithm; **134/134 + 18/18 full sample reproduced** with numpy 1.26.4 |
-| [Discrepancy Analysis](discrepancy_analysis/) | Per-ballot rates by ballot type; batch size effects; Jackson pattern; TOOMBS anomaly |
-| [Manifest & Tally Analysis](manifest_and_tally_analysis/) | County statistics, voting-mode breakdown, candidate totals, diluted margins |
-| [Artifact Inventory](artifact_inventory/) | All download URLs, SHA256 checksums, HTTP header notes |
-| [Ballot Image Audit](ballot_image_audit/) | Enhanced Voting OCR methodology; reconciliation of SOS headline figures; Cherokee, Muscogee, Henry County patterns; Nov 2024 precedents including Sumter omission |
+| [Executive Summary](README.md) | Timeline, key values, SHA256 hash table, transparency gaps, recommendations |
+| [Hash Commitment Analysis](hash_commitment.md) | Verification of the @GaSecofState tweet hashes — **both VERIFIED** |
+| [Transparency Gap Analysis](transparency_gap_analysis.md) | PR #2350 checklist; BMD vs. HMPB discrepancy rate table |
+| [Sample Reproducibility](sample_reproducibility.md) | PPEB/MACRO algorithm; **134/134 + 18/18 full sample reproduced** with numpy 1.26.4 |
+| [Discrepancy Analysis](discrepancy_analysis.md) | Per-ballot rates by ballot type; batch size effects; Jackson pattern; TOOMBS anomaly |
+| [Manifest & Tally Analysis](manifest_and_tally_analysis.md) | County statistics, voting-mode breakdown, candidate totals, diluted margins |
+| [Artifact Inventory](artifact_inventory.md) | All download URLs, SHA256 checksums, HTTP header notes |
+| [Ballot Image Audit](ballot_image_audit.md) | Enhanced Voting OCR methodology; reconciliation of SOS headline figures; Cherokee, Muscogee, Henry County patterns; Nov 2024 precedents including Sumter omission |

@@ -105,7 +105,7 @@ Raw ballot images for the May 19, 2026 primary are available at
 | Organization | County-by-county only; no statewide download |
 
 The site is protected by Cloudflare and requires interactive browser access. Images
-were not downloaded for this review. See the [Ballot Image Audit report](ballot_image_audit/)
+were not downloaded for this review. See the [Ballot Image Audit report](ballot_image_audit.md)
 for discussion of what the images contain and the batch-linkage open question.
 
 ---
@@ -149,4 +149,4 @@ The SOS June 3 press release states:
 
 Note: An earlier version of this investigation used an incorrect prefix (`7d00771bf178007f4c6f43bf45b6`) that does not correspond to either file. The actual tweeted hashes are the full 64-character values above.
 
-See the [Hash Commitment Analysis](../hash_commitment/) for full details.
+See the [Hash Commitment Analysis](hash_commitment.md) for full details.

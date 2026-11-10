@@ -87,7 +87,7 @@ c31d1f67404634ea04b4c68a5272655c9bd3879fe2233f4878819963cfc17aaf  manifests.zip 
 | `manifests.zip` | `c31d1f67...17aaf` | `c31d1f67...17aaf` | ✓ |
 | `candidate_totals.zip` | `2842be86...0312` | `2842be86...0312` | ✓ |
 
-The files currently posted are the same bytes committed in the May 28 tweet. The MailChimp URL timestamps (`2026_06_02T...`) reflect the press-release link creation date, not file regeneration. See the [Hash Commitment Analysis](../hash_commitment/) for full timing discussion.
+The files currently posted are the same bytes committed in the May 28 tweet. The MailChimp URL timestamps (`2026_06_02T...`) reflect the press-release link creation date, not file regeneration. See the [Hash Commitment Analysis](hash_commitment.md) for full timing discussion.
 
 ---
 
@@ -172,7 +172,7 @@ The files currently posted are the same bytes committed in the May 28 tweet. The
 
 ## Comparison to Arlo PR #2350 Transparency Framework
 
-[Arlo PR #2350](https://github.com/votingworks/arlo/pull/2350) ("docs: Arlo comparison audit transparency report and guide", opened June 20, 2026) establishes a three-phase transparency framework for comparison audits — pre-seed, post-seed/pre-comparison, and post-audit — and distinguishes "audit was conducted" from "audit is independently verifiable." The full checklist comparison appears in the [Transparency Gap Analysis](../transparency_gap_analysis/).
+[Arlo PR #2350](https://github.com/votingworks/arlo/pull/2350) ("docs: Arlo comparison audit transparency report and guide", opened June 20, 2026) establishes a three-phase transparency framework for comparison audits — pre-seed, post-seed/pre-comparison, and post-audit — and distinguishes "audit was conducted" from "audit is independently verifiable." The full checklist comparison appears in the [Transparency Gap Analysis](transparency_gap_analysis.md).
 
 **What Georgia already does well:**
 Georgia posts all three major artifact types (report, manifests, tallies) in machine-readable CSV format, includes the random seed in the report, lists per-batch ticket numbers, held a public dice-roll event, expanded to two contests in 2026, met the 5% risk limit, and committed both artifact hashes on social media before hand-counting began — placing it ahead of most US jurisdictions.

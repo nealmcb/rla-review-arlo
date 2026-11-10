@@ -37,7 +37,7 @@ title: Georgia May 2026 RLA — Review
 - ✓ **Both committed SHA256 hashes verified.** On May 28, 2026 at 11:52 AM EDT, @GaSecofState tweeted SHA256 hashes of both artifact ZIPs — apparently after the random seed had been entered and the sample drawn (~3 minutes earlier). Both hashes match the files currently posted for download exactly. The files were not altered after that point.
 - ✓ **Full PPEB sample draw independently reproduced.** All 134 US Senate and 18 Governor batches (100%) were reproduced using numpy 1.26.4 (matching Arlo's `poetry.lock` pin) and the established batch ordering.
 - ✓ **Risk limit met.** Risk levels 4.91% (Senate Rep) and 4.17% (Governor Dem) are below the 5% threshold.
-- ⚠ **Hash commitment was post-seed** (~3 minutes after the random seed was entered and the sample drawn). The @GaSecofState tweet explains why they withheld the actual data files until after hand-counting finished (to avoid giving counters "a number to hit"). However, their stated rationale does not address why the hash itself wasn't committed before the seed was entered — which would be the stronger protection. In those ~3 minutes, someone with advance knowledge of the batches to be drawn could have altered the files before they were committed. See the [Hash Commitment Analysis](reports/hash_commitment/) for full discussion.
+- ⚠ **Hash commitment was post-seed** (~3 minutes after the random seed was entered and the sample drawn). The @GaSecofState tweet explains why they withheld the actual data files until after hand-counting finished (to avoid giving counters "a number to hit"). However, their stated rationale does not address why the hash itself wasn't committed before the seed was entered — which would be the stronger protection. In those ~3 minutes, someone with advance knowledge of the batches to be drawn could have altered the files before they were committed. See the [Hash Commitment Analysis](reports/hash_commitment.md) for full discussion.
 - ⚠ **Commitment lives only on X/Twitter** — not archived on sos.ga.gov and subject to platform link rot.
 - ✗ **Only two contests audited.** All other contests on the May 19 ballot have no RLA evidence of accuracy (see [Caveats](#important-caveats)).
 
@@ -69,7 +69,7 @@ The scripts in this repository classify the 706 audited batches by ballot type u
 
 **The per-batch column is misleading.** The ~5× gap in per-batch rates (6.7% HMPB vs. 34.2% AV-BMD) is overwhelmingly a batch-size artifact: an AV scanner batch averaging 1,613 ballots has far more opportunities per batch for a single-vote discrepancy to appear than a 24-ballot absentee container. When measured per ballot, the pattern inverts — **HMPB has 2.5–3.5× more vote discrepancies per ballot than BMD**, likely driven by interpretive ambiguity in hand-marked ovals.
 
-Discrepancy magnitudes were small (typically 1–2 votes per batch) and did not change the outcome of either contest. The causes of individual discrepancies — whether auditor tallying error, QR-vs-text encoding disagreement, or other factors — are **not documented in any published Georgia artifact**. See the [Discrepancy Analysis report](reports/discrepancy_analysis/) for full detail.
+Discrepancy magnitudes were small (typically 1–2 votes per batch) and did not change the outcome of either contest. The causes of individual discrepancies — whether auditor tallying error, QR-vs-text encoding disagreement, or other factors — are **not documented in any published Georgia artifact**. See the [Discrepancy Analysis report](reports/discrepancy_analysis.md) for full detail.
 
 ### Why BMD discrepancies exist at all
 
@@ -83,7 +83,7 @@ Georgia does not recount discrepant batches to determine the cause, so the intri
 
 The most direct improvement within the current framework is a voter-education effort encouraging every BMD voter to pause and read the full printed text before inserting the ballot. A longer-term improvement is expanding HMPB use (absentee by mail or in-person hand-marking options), which eliminates the QR-code trust gap entirely.
 
-The per-batch BMD discrepancy rates are substantially higher than HMPB rates — but this is a batch-size effect, not a quality difference. See the [Discrepancy Analysis report](reports/discrepancy_analysis/) for batch size statistics, the Derrick Jackson net-discrepancy pattern, and the TOOMBS one-ballot anomaly.
+The per-batch BMD discrepancy rates are substantially higher than HMPB rates — but this is a batch-size effect, not a quality difference. See the [Discrepancy Analysis report](reports/discrepancy_analysis.md) for batch size statistics, the Derrick Jackson net-discrepancy pattern, and the TOOMBS one-ballot anomaly.
 
 ---
 
@@ -109,13 +109,13 @@ All reports are rendered as web pages via GitHub Pages:
 
 | Report | Description |
 |--------|-------------|
-| [Executive Summary](reports/README/) | Timeline, key values, SHA256 hashes, recommendations |
-| [Hash Commitment Analysis](reports/hash_commitment/) | Verification of the @GaSecofState tweet hashes — **VERIFIED** |
-| [Transparency Gap Analysis](reports/transparency_gap_analysis/) | PR #2350 checklist, BMD vs. HMPB discrepancy table |
-| [Sample Reproducibility](reports/sample_reproducibility/) | PPEB/MACRO algorithm; 134/134 + 18/18 full sample reproduced |
-| [Discrepancy Analysis](reports/discrepancy_analysis/) | Per-ballot rates; batch size effects; Jackson pattern; TOOMBS anomaly |
-| [Manifest & Tally Analysis](reports/manifest_and_tally_analysis/) | County statistics, voting-mode breakdown, diluted margins |
-| [Artifact Inventory](reports/artifact_inventory/) | All download URLs, SHA256 checksums, HTTP headers |
+| [Executive Summary](reports/README.md) | Timeline, key values, SHA256 hashes, recommendations |
+| [Hash Commitment Analysis](reports/hash_commitment.md) | Verification of the @GaSecofState tweet hashes — **VERIFIED** |
+| [Transparency Gap Analysis](reports/transparency_gap_analysis.md) | PR #2350 checklist, BMD vs. HMPB discrepancy table |
+| [Sample Reproducibility](reports/sample_reproducibility.md) | PPEB/MACRO algorithm; 134/134 + 18/18 full sample reproduced |
+| [Discrepancy Analysis](reports/discrepancy_analysis.md) | Per-ballot rates; batch size effects; Jackson pattern; TOOMBS anomaly |
+| [Manifest & Tally Analysis](reports/manifest_and_tally_analysis.md) | County statistics, voting-mode breakdown, diluted margins |
+| [Artifact Inventory](reports/artifact_inventory.md) | All download URLs, SHA256 checksums, HTTP headers |
 
 ---
 
@@ -153,7 +153,7 @@ All scripts live in [`src/`](https://github.com/nealmcb/rla-review-arlo/tree/mai
 
 A **ballot image audit** is a distinct and complementary transparency mechanism from an RLA. Georgia's Dominion ImageCast Precinct (ICP) scanners capture a digital image of each ballot as it passes through. The Georgia SOS contracted **[Enhanced Voting](https://enhancedvoting.com)** to apply OCR to those stored images and compare the resulting vote totals against the county-certified results — for every contest, in every county.
 
-For the May 2026 primary, the SOS released aggregate contest-results comparison data alongside a press release on approximately June 28, 2026. This review has analyzed that data in detail. See the [Ballot Image Audit report](reports/ballot_image_audit/) for full findings, including:
+For the May 2026 primary, the SOS released aggregate contest-results comparison data alongside a press release on approximately June 28, 2026. This review has analyzed that data in detail. See the [Ballot Image Audit report](reports/ballot_image_audit.md) for full findings, including:
 
 - Reconciliation of the SOS's headline figures ("1,785 contests reviewed," "159 discrepancies")
 - Cherokee County: systematic audit losses across all 9 Republican Party Questions (−13 to −20 votes each)

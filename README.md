@@ -12,7 +12,8 @@ Each audit review independently verifies official artifacts, reproduces the samp
 
 | Audit | Date | Contests | Reports |
 |-------|------|----------|---------|
-| [Georgia May 19, 2026 General Primary](2026-05-19-primary/) | 2026-05-19 | US Senate (R), Governor (D) | [Reports](https://nealmcb.github.io/rla-review-arlo/2026-05-19-primary/reports/) |
+| [Georgia November 4, 2025 Special Election](2025-11-04-special/index.md) | 2025-11-04 | PSC District 2 | [Review](https://nealmcb.github.io/rla-review-arlo/2025-11-04-special/) |
+| [Georgia May 19, 2026 General Primary](2026-05-19-primary/index.md) | 2026-05-19 | US Senate (R), Governor (D) | [Reports](https://nealmcb.github.io/rla-review-arlo/2026-05-19-primary/reports/) |
 
 ---
 

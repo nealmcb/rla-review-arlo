@@ -84,7 +84,7 @@ images illustrating image quality issues, and an OCR methodology appendix.
 - **14 total discrepancies** in the final report: 3 BMD (Cherokee, Gwinnett, Wilkinson),
   11 HMPB (Chatham, Columbia, Decatur×4, Newton, Rockdale, Sumter×2, Wilkes).
 
-See the [Ballot Image Audit report](reports/ballot_image_audit/) for full analysis.
+See the [Ballot Image Audit report](reports/ballot_image_audit.md) for full analysis.
 
 ---
 
@@ -122,4 +122,4 @@ files were obtained manually.
 
 | Report | Description |
 |--------|-------------|
-| [Ballot Image Audit](reports/ballot_image_audit/) | Analysis of the Enhanced Voting report — AuditMark findings, county discrepancy table, methodology |
+| [Ballot Image Audit](reports/ballot_image_audit.md) | Analysis of the Enhanced Voting report — AuditMark findings, county discrepancy table, methodology |
