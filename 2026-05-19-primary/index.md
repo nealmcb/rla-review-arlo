@@ -34,10 +34,10 @@ title: Georgia May 2026 RLA — Review
 
 **What this review verifies:**
 
-- ✓ **Both committed SHA256 hashes verified.** On May 28, 2026 at 11:52 AM EDT, @GaSecofState tweeted SHA256 hashes of both artifact ZIPs — apparently after the random seed had been entered and the sample drawn (~3 minutes earlier). Both hashes match the files currently posted for download exactly. The files were not altered after that point.
+- ✓ **Both committed SHA256 hashes verified.** On May 28, 2026 at 11:57 AM EDT, @GaSecofState tweeted SHA256 hashes of both artifact ZIPs, at least 8 minutes after the public dice roll that set the random seed (the seed was entered into Arlo at 15:49:15 UTC; hashes posted 15:57:06–15:57:15 UTC). Both hashes match the files currently posted for download exactly. The files were not altered after that point.
 - ✓ **Full PPEB sample draw independently reproduced.** All 134 US Senate and 18 Governor batches (100%) were reproduced using numpy 1.26.4 (matching Arlo's `poetry.lock` pin) and the established batch ordering.
 - ✓ **Risk limit met.** Risk levels 4.91% (Senate Rep) and 4.17% (Governor Dem) are below the 5% threshold.
-- ⚠ **Hash commitment was post-seed** (~3 minutes after the random seed was entered and the sample drawn). The @GaSecofState tweet explains why they withheld the actual data files until after hand-counting finished (to avoid giving counters "a number to hit"). However, their stated rationale does not address why the hash itself wasn't committed before the seed was entered — which would be the stronger protection. In those ~3 minutes, someone with advance knowledge of the batches to be drawn could have altered the files before they were committed. See the [Hash Commitment Analysis](reports/hash_commitment.md) for full discussion.
+- ⚠ **Hash commitment was post-seed** (at least 8 minutes after the dice were rolled and the sample drawn). The @GaSecofState tweet explains why they withheld the actual data files until after hand-counting finished (to avoid giving counters "a number to hit"). However, their stated rationale does not address why the hash itself wasn't committed before the seed was entered — which would be the stronger protection. In that interval, someone with advance knowledge of the batches to be drawn could have altered the files before they were committed. See the [Hash Commitment Analysis](reports/hash_commitment.md) for full discussion.
 - ⚠ **Commitment lives only on X/Twitter** — not archived on sos.ga.gov and subject to platform link rot.
 - ✗ **Only two contests audited.** All other contests on the May 19 ballot have no RLA evidence of accuracy (see [Caveats](#important-caveats)).
 
@@ -91,7 +91,7 @@ The per-batch BMD discrepancy rates are substantially higher than HMPB rates —
 
 1. **Only two contests audited.** The May 19, 2026 ballot included many other contests — congressional primaries, state legislative races, local offices — for which **no statistical audit evidence exists**. The risk-limiting audit result for the US Senate and Governor races should not be interpreted as evidence of accuracy for any other contest.
 
-2. **Post-seed commitment.** The hash commitment tweet arrived ~3 minutes after the random seed was entered and the sample was drawn. A pre-seed commitment (hash posted before the dice roll) would be a stronger protection.
+2. **Post-seed commitment.** The hash commitment tweets arrived at least 8 minutes after the dice were rolled and the sample was drawn. A pre-seed commitment (hash posted before the dice roll) would be a stronger protection.
 
 3. **Commitment durability.** The sole record of the hash commitment is an X/Twitter thread. It is not archived on sos.ga.gov or linked from the official SOS audit page.
 

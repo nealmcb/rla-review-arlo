@@ -140,6 +140,8 @@ for discussion of what the images contain and the batch-linkage open question.
 The SOS June 3 press release states:
 > "You can confirm that these were the same batch tallies that we started the audit with by performing a SHA256 hash of the file and matching it to the tweet from Georgia Secretary of State Brad Raffensperger (@GASecofState) from 05/28/2026 at 11:52 AM."
 
+11:52 AM EDT is the start of the thread; the two hash tweets were posted at 11:57:06 and 11:57:15 AM EDT (see [Hash Commitment Analysis](hash_commitment.md#timing-analysis)).
+
 **Both committed hashes verified.** The SHA256 hashes tweeted by @GaSecofState on May 28, 2026 match the currently posted files exactly:
 
 | File | Tweeted hash | Match |

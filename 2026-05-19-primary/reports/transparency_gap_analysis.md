@@ -46,7 +46,7 @@ The PR adds three planning documents to Arlo:
 
 | Requirement | Georgia Status | Notes |
 |-------------|---------------|-------|
-| Committed ballot manifest (pre-seed) | Partial | Hash committed at audit start (post-seed, ~3 min after seed entry), not before dice roll |
+| Committed ballot manifest (pre-seed) | Partial | Hash committed at audit start (post-seed, at least 8 min after the dice roll), not before dice roll |
 | Committed candidate totals / batch tallies (pre-seed) | Partial | Same — committed post-seed but before hand-counting began |
 | SHA-256 hash or hash-index of committed artifacts | ✓ Present | Both hashes tweeted and **verified** to match currently posted files |
 | Durable timestamp on commitment | Partial | X/Twitter post exists; not archived on sos.ga.gov; X imposes access barriers |
@@ -137,11 +137,11 @@ For deeper analysis — including the Derrick Jackson directional pattern, the T
 
 **Result: ✓ VERIFIED**
 
-The @GaSecofState tweet thread (May 28, 2026, 11:52 AM EDT) committed SHA256 hashes of both artifact ZIPs, apparently after the random seed had been entered and the sample drawn (~3 minutes earlier). Both hashes match the currently posted files exactly:
+The @GaSecofState tweet thread (May 28, 2026, beginning 11:52 AM EDT) committed SHA256 hashes of both artifact ZIPs at 11:57 AM EDT, at least 8 minutes after the dice were rolled and the sample drawn. Both hashes match the currently posted files exactly:
 - `manifests.zip`: `c31d1f67404634ea04b4c68a5272655c9bd3879fe2233f4878819963cfc17aaf` ✓
 - `candidate_totals.zip`: `2842be86bd615160f36f0af8f6d52a2fe1192103163dd51de8d8a1617ca10312` ✓
 
-**Caveat — timing:** The tweet came ~3 minutes after the Arlo round was started (seed entered and sample drawn). The commitment is therefore post-seed rather than pre-seed. The tweet thread explains why the actual data files were withheld until hand-counting finished (to avoid giving counters "a number to hit"), but does not address why the hash itself wasn't committed before the seed was entered. The commitment proves the files were not altered after the tweet, but cannot rule out alteration in the brief window between seed entry and the tweet.
+**Caveat — timing:** The hashes were tweeted at least 8 minutes after the dice were rolled (the seed was entered into Arlo at 15:49:15 UTC). The commitment is therefore post-seed rather than pre-seed. The tweet thread explains why the actual data files were withheld until hand-counting finished (to avoid giving counters "a number to hit"), but does not address why the hash itself wasn't committed before the seed was entered. The commitment proves the files were not altered after the tweet, but cannot rule out alteration in the brief window between seed entry and the tweet.
 
 **Caveat — durability:** The commitment lives only on X/Twitter and is not archived on sos.ga.gov or linked from the official SOS audit page.
 
@@ -189,7 +189,7 @@ An independent observer can verify that individual batches were correctly assign
 
 ## Transparency Gaps
 
-1. **Hash commitment is post-seed, not pre-seed**: The tweet appeared ~3 minutes after the Arlo round started (seed entered, sample drawn). It does not prevent a scenario where someone with advance knowledge of the seed and the batches to be drawn could alter batch tallies in that ~3-minute window. Committing the hash before the dice roll would eliminate this residual risk.
+1. **Hash commitment is post-seed, not pre-seed**: The hashes were tweeted at least 8 minutes after the dice were rolled (the seed was entered into Arlo at 15:49:15 UTC). It does not prevent a scenario where someone with advance knowledge of the seed and the batches to be drawn could alter batch tallies in that window. Committing the hash before the dice roll would eliminate this residual risk.
 2. **Commitment is hosted on X/Twitter only**: Not archived on sos.ga.gov; not linked from the official audit page; X imposes login/payment barriers for access
 3. **No sampler inputs file**: There is no structured artifact listing all inputs to the PPEB sampler (contest totals, batch totals, risk limit, numpy seed) as a single machine-readable document
 4. **No Arlo version specified**: Observers cannot know which Arlo code version to use for reproduction

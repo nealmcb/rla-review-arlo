@@ -33,19 +33,19 @@ Source: `https://sos.ga.gov/news/raffensperger-announces-primary-risk-limiting-a
 
 ## The Tweet Thread (via copy-paste, 05/28/2026)
 
-The following tweets were posted as a thread from @GaSecofState at 11:52 AM EDT on May 28, 2026:
+The following tweets were posted as a thread from @GaSecofState on May 28, 2026, starting at 11:52 AM EDT. Exact UTC times come from each post's status ID, decoded with [`src/snowflake_time.py`](https://github.com/nealmcb/rla-review-arlo/blob/main/src/snowflake_time.py):
 
-> **Tweet 1:**
+> **Tweet 1** ([2060026478759137692](https://x.com/GaSecofState/status/2060026478759137692), 15:52:40.634 UTC):
 > "Later today, Georgia counties are counting a random sample of ballot batches by hand as part of Risk Limiting Audits (RLA). We want this audit to be as transparent as possible."
 
 > **Tweet 2:**
 > "We could publish the ballot manifests and machine-counted batch totals, so everyone can follow along and verify on their own that the numbers match with the hand counts. But, if we did that before the audit finishes, some may question whether that gives auditors a 'number to hit'"
 
-> **Tweet 3:**
+> **Tweet 3** ([2060027592845955437](https://x.com/GaSecofState/status/2060027592845955437), 15:57:06.253 UTC):
 > "So, in order to achieve transparency and audit integrity at the same time, we are publishing a hash of the ballot manifests:
 > `c31d1f67404634ea04b4c68a5272655c9bd3879fe2233f4878819963cfc17aaf`"
 
-> **Tweet 4:**
+> **Tweet 4** ([2060027632255639963](https://x.com/GaSecofState/status/2060027632255639963), 15:57:15.649 UTC):
 > "and the machine-counted batch totals: `2842be86bd615160f36f0af8f6d52a2fe1192103163dd51de8d8a1617ca10312`"
 
 > **Tweet 5:**
@@ -77,21 +77,23 @@ Both committed hashes verified. The files available for download on June 29, 202
 
 ## Timing Analysis
 
-The official `final_audit_report.csv` records a Round 1 start timestamp of `2026-05-28T15:49:15` for both contests. This is Arlo's server-side record of when an audit administrator clicked "Start Round" in the Arlo web application — the moment the random seed was entered and the sample draw was triggered. The timestamp reflects the Arlo server clock (UTC), which may differ slightly from the wall clock at the dice-roll event. Arlo records this per-contest, and both contests show the same value: 15:49:15 UTC.
+The official `final_audit_report.csv` records a Round 1 start timestamp of `2026-05-28T15:49:15.244237+00:00` for both contests. This is Arlo's server-side record of when an audit administrator clicked "Start Round" in the Arlo web application — the moment the random seed was entered and the sample draw was triggered. The seed itself comes from the public roll of twenty 10-sided dice at the Secretary's press conference at the State Capitol, which happens first, so the round start is an upper bound on the time of the roll. The scheduled start of the May 28 event has not been found; a post or recording from the event would fix the roll time exactly. The timestamp reflects the Arlo server clock (UTC), which may differ slightly from the wall clock at the dice-roll event. Arlo records this per-contest, and both contests show the same value: 15:49:15 UTC.
 
-| Event | UTC | EDT |
-|-------|-----|-----|
-| Arlo Round 1 started (seed entered, sample drawn) | 15:49:15 | 11:49 AM |
-| @GaSecofState tweet thread | ~15:52:00 | 11:52 AM |
-| Gap | ~165 seconds | ~2.8 minutes |
+| Event | UTC | EDT | After seed entry |
+|-------|-----|-----|------------------|
+| Public dice roll (twenty 10-sided dice, State Capitol) | at or before 15:49:15 | at or before 11:49 AM | — |
+| Arlo Round 1 started (seed entered, sample drawn) | 15:49:15.244 | 11:49:15 AM | — |
+| Tweet 1 (thread begins; no hash) | 15:52:40.634 | 11:52:40 AM | 3 m 25 s |
+| Tweet 3: ballot manifests hash | 15:57:06.253 | 11:57:06 AM | **7 m 51 s** |
+| Tweet 4: batch totals hash | 15:57:15.649 | 11:57:15 AM | **8 m 00 s** |
 
-**The tweet was committed approximately 3 minutes after the Arlo round was started** — that is, after the random seed was entered and the sample was already drawn.
+**The hashes were committed at least 8 minutes after the dice were rolled**: 8 minutes after the seed was entered into Arlo, and longer after the roll itself by an amount not yet documented. The sample was already drawn. The press release's "11:52 AM" is the time of the thread's first tweet, which carries no hash.
 
 ### What the tweet explains — and what it doesn't
 
 The tweet thread explains clearly why the actual data files were withheld until after hand-counting finished: publishing them first might give auditors "a number to hit." This is a reasonable concern about the integrity of the hand count.
 
-What the tweet does not address is why the hash wasn't committed *before* the seed was entered. The ~3-minute window between seed entry and hash publication means that, in principle, someone with advance knowledge of which batches would be drawn could have made targeted alterations to the batch tally files before the hash was published. With sufficient preparation, such alterations could be made quickly. This is not evidence that this occurred — but it is a gap that a pre-seed commitment would close entirely.
+What the tweet does not address is why the hash wasn't committed *before* the dice were rolled. The window between the dice roll and hash publication, at least 8 minutes, means that, in principle, someone with advance knowledge of which batches would be drawn could have made targeted alterations to the batch tally files before the hash was published. With sufficient preparation, such alterations could be made quickly. This is not evidence that this occurred — but it is a gap that a pre-seed commitment would close entirely.
 
 ### What this commitment does and does not protect against
 
@@ -100,7 +102,7 @@ What the tweet does not address is why the hash wasn't committed *before* the se
 - Undetected alteration of any audit artifact after the May 28 commitment
 
 **Does not protect against:**
-- Alterations made in the ~3 minutes between seed entry (15:49:15 UTC) and the hash publication (~15:52 UTC)
+- Alterations made between the dice roll (at or before 15:49:15 UTC, when the seed was entered) and the hash publication (15:57:06–15:57:15 UTC)
 - Alterations made at any time before the seed was entered (counties uploaded files over the preceding week; Arlo stores them internally)
 - Altering the ballot manifests to adjust the eligible population before the seed was entered
 
@@ -115,7 +117,7 @@ What the tweet does not address is why the hash wasn't committed *before* the se
 | @GaSecofState tweet thread with SHA256 hashes existed on 05/28/2026 | **Verified** — tweet text confirmed via copy-paste |
 | Manifests hash matches currently posted `manifests.zip` | **✓ VERIFIED** — exact match |
 | Candidate totals hash matches currently posted `candidate_totals.zip` | **✓ VERIFIED** — exact match |
-| Hash was committed before the random seed was entered | **Not met** — tweet ~3 min post-seed |
+| Hash was committed before the dice were rolled | **Not met** — hashes posted at least 8 min after the roll |
 | Commitment is durably archived | **Partial** — X/Twitter post only; not archived on sos.ga.gov |
 
 **Overall finding:** The SHA256 hash commitment is **verified**. Both ZIPs are byte-identical to the files committed in the May 28, 2026 tweet thread. This is a meaningful and successful transparency measure. The remaining limitations are (1) the commitment was post-seed rather than pre-seed, and (2) the commitment lives only on X/Twitter rather than a durable official location.

@@ -37,11 +37,11 @@ None of the 3 downloaded files and none of the 318 extracted files match.
 
 ## Step 4 ✓ — Social media commitment investigated
 
-- @GASecofState tweet at 11:52 AM EDT, 05/28/2026 — referenced in SOS June 3 press release
+- @GaSecofState tweet thread beginning 11:52 AM EDT, 05/28/2026 — referenced in SOS June 3 press release
 - Arlo round start time in audit report: `2026-05-28T15:49:15 UTC` = 11:49 AM EDT
-- **The tweet came ~3 minutes AFTER the Arlo round was started (seed was entered)**
+- **The hash tweets came at least 8 minutes AFTER the dice roll** (8 minutes after the seed was entered into Arlo): manifests hash 15:57:06 UTC, batch totals hash 15:57:15 UTC (from the status IDs; see `src/snowflake_time.py`)
 - This means the hash was committed AFTER the sample was drawn, not before — a transparency gap
-- Gabriel Sterling X post status/2070235247657287995 — content not directly accessible
+- Gabriel Sterling X post status/2070235247657287995 — content not directly accessible; its status ID dates it to 2026-06-25 19:58:40 UTC, around the June 16 runoff audit, so it is not part of this thread
 - The tweet text/hash were not found in any indexed public source via web search
 
 ---
@@ -116,7 +116,8 @@ Key principles: software independence, mechanical verification, human/blind audi
 | May 19, 2026 | Election day | SOS press release |
 | ~May 22–27 | Counties upload manifests and candidate totals to Arlo | File timestamps in ZIPs |
 | May 28, ~11:49 AM EDT | Dice roll event; seed 06712221796172622814 entered into Arlo; round 1 started | final_audit_report.csv |
-| May 28, 11:52 AM EDT | @GASecofState tweets SHA256 hash of batch tallies | SOS June 3 press release (hash not independently verified) |
+| May 28, 11:52 AM EDT | @GaSecofState begins its tweet thread (15:52:40 UTC) | status ID 2060026478759137692 |
+| May 28, 11:57 AM EDT | @GaSecofState tweets SHA256 hashes of the manifests (15:57:06 UTC) and batch totals (15:57:15 UTC) | status IDs 2060027592845955437, 2060027632255639963; both hashes verified |
 | May 28–June 2 | Counties count 706 batches (706 × 148 batches) | audit report |
 | June 2, ~5:28 PM EDT | Audit round 1 completed in Arlo | final_audit_report.csv |
 | June 3, 2026 | SOS press release published with artifact links | sos.ga.gov |
@@ -155,11 +156,11 @@ Key principles: software independence, mechanical verification, human/blind audi
 
 ---
 
-## MAJOR CORRECTION (2026-06-29 ~16:05 UTC) — Tweet Text Received
+## 2026-06-29 ~16:05 UTC — Tweet text received
 
 User provided the full @GaSecofState tweet thread text from May 28, 2026.
 
-### Key corrections:
+### Findings from the tweet text:
 
 1. **BOTH HASHES VERIFIED** — not "not found" as initially concluded
    - manifests.zip: `c31d1f67404634ea04b4c68a5272655c9bd3879fe2233f4878819963cfc17aaf` ✓ EXACT MATCH
@@ -175,8 +176,8 @@ User provided the full @GaSecofState tweet thread text from May 28, 2026.
 
 5. **Account is @GaSecofState** (mixed case), not @GASecofState (all caps) as in the briefing
 
-6. **Tweet timing clarified**: shown as 9:52 AM MDT = 11:52 AM EDT = 15:52 UTC
-   — confirmed 2.8 minutes after round start (15:49:15 UTC), as originally calculated
+6. **Tweet timing**: the thread began at 15:52:40 UTC (shown as 9:52 AM MDT); the hash tweets
+   are 15:57:06 and 15:57:15 UTC, at least 8 minutes after the dice roll (the seed was entered at 15:49:15 UTC)
 
 7. **Files were NOT regenerated** — the MailChimp URL timestamps reflect link creation,
    not file regeneration; the actual bytes match the May 28 commitment exactly

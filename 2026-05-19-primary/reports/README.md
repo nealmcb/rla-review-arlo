@@ -21,7 +21,7 @@ Three artifact files were publicly posted on June 3, 2026:
 2. Ballot manifests (ZIP, 159 county CSVs)
 3. Machine batch tallies / candidate totals (ZIP, 159 county CSVs)
 
-On May 28, 2026 at 11:52 AM EDT, @GaSecofState published a four-tweet thread committing SHA256 hashes of **both** the ballot manifests and the machine-counted batch totals. The official `final_audit_report.csv` records the Round 1 start time as 15:49:15 UTC (11:49 AM EDT) — approximately 3 minutes before the tweet. The tweet thread explains why the actual files were withheld until hand-counting finished (to avoid giving auditors "a number to hit"); it does not address why the hash wasn't committed before the seed was entered.
+On May 28, 2026, @GaSecofState published a five-tweet thread, starting at 11:52 AM EDT, committing SHA256 hashes of **both** the ballot manifests (tweet 3, 15:57:06 UTC) and the machine-counted batch totals (tweet 4, 15:57:15 UTC). The official `final_audit_report.csv` records the Round 1 start, when the seed from the public dice roll was entered, as 15:49:15 UTC (11:49 AM EDT). The dice were rolled at or before that time, so the hashes were posted at least 8 minutes after the roll. The tweet thread explains why the actual files were withheld until hand-counting finished (to avoid giving auditors "a number to hit"); it does not address why the hash wasn't committed before the seed was entered.
 
 **Both committed hashes have been independently verified.** The files currently posted for download are byte-for-byte identical to the files hashed in the tweet.
 
@@ -29,7 +29,7 @@ On May 28, 2026 at 11:52 AM EDT, @GaSecofState published a four-tweet thread com
 
 **The risk limit was met for both contests** (risk levels 4.91% and 4.17%), 706 batches were hand-counted across all 159 counties, and discrepancies were minor and not outcome-changing.
 
-**Remaining limitations:** The hash commitment was made ~3 minutes after the random seed was entered (post-seed, not pre-seed), and lives only on X/Twitter rather than a durable official page. The full MACRO sample draw requires the Arlo/numpy version used (not published with the audit artifacts).
+**Remaining limitations:** The hash commitment was made at least 8 minutes after the dice were rolled (post-seed, not pre-seed), and lives only on X/Twitter rather than a durable official page. The full MACRO sample draw requires the Arlo/numpy version used (not published with the audit artifacts).
 
 ---
 
@@ -39,8 +39,10 @@ On May 28, 2026 at 11:52 AM EDT, @GaSecofState published a four-tweet thread com
 |----------------|-------|
 | May 19, 2026 | Election day |
 | May 22–27, 2026 | Counties upload manifests and candidate totals to Arlo (per file timestamps in ZIPs) |
+| May 28, at or before 11:49 AM EDT | Public roll of twenty 10-sided dice at the State Capitol sets the 20-digit seed |
 | May 28, 11:49 AM EDT | Random seed `06712221796172622814` entered into Arlo; Round 1 started (15:49:15 UTC per audit report) |
-| May 28, 11:52 AM EDT | @GaSecofState tweets SHA256 hashes of **both** manifests.zip and candidate_totals.zip (~15:52 UTC, ~3 min after seed entry) |
+| May 28, 11:52 AM EDT | @GaSecofState begins its tweet thread (15:52:40 UTC) |
+| May 28, 11:57 AM EDT | @GaSecofState tweets SHA256 hashes of **both** manifests.zip and candidate_totals.zip (15:57:06 and 15:57:15 UTC, at least 8 min after the dice roll) |
 | May 28–June 2 | 159 counties hand-count 706 batches |
 | June 2, ~9:28 PM EDT | Round 1 completed in Arlo (21:28:20 UTC per audit report) |
 | June 3, 2026 | SOS press release with artifact download links on MailChimp |
@@ -107,7 +109,7 @@ The files currently posted are the same bytes committed in the May 28 tweet. The
 
 ## Most Important Transparency Gaps
 
-1. **Hash commitment is post-seed, not pre-seed.** The tweet came ~3 minutes after the Arlo round was started (seed entered, sample drawn). The SOS explains why the data files were withheld (to avoid "a number to hit"), but the hash itself could have been committed hours before the dice roll with no procedural change.
+1. **Hash commitment is post-seed, not pre-seed.** The hashes were tweeted at least 8 minutes after the dice were rolled (the seed was entered into Arlo at 15:49:15 UTC). The SOS explains why the data files were withheld (to avoid "a number to hit"), but the hash itself could have been committed hours before the dice roll with no procedural change.
 
 2. **Commitment lives only on X/Twitter.** Not archived on sos.ga.gov, not linked from the permanent SOS audit information page. X/Twitter imposes access barriers and may not be durable.
 
@@ -178,7 +180,7 @@ The files currently posted are the same bytes committed in the May 28 tweet. The
 Georgia posts all three major artifact types (report, manifests, tallies) in machine-readable CSV format, includes the random seed in the report, lists per-batch ticket numbers, held a public dice-roll event, expanded to two contests in 2026, met the 5% risk limit, and committed both artifact hashes on social media before hand-counting began — placing it ahead of most US jurisdictions.
 
 **Remaining transparency gaps:**
-The hash commitment was made post-seed (~3 minutes after seed entry) rather than pre-seed, and is hosted only on X/Twitter. The sampler-inputs artifact, Arlo/numpy version, independent verification scripts, standardized county-level result posting, and an explicit ballot-type field in the manifests are absent.
+The hash commitment was made post-seed (at least 8 minutes after the dice roll) rather than pre-seed, and is hosted only on X/Twitter. The sampler-inputs artifact, Arlo/numpy version, independent verification scripts, standardized county-level result posting, and an explicit ballot-type field in the manifests are absent.
 
 **Path forward:**
 Commit hashes before the dice roll; archive the commitment and link it from sos.ga.gov; publish the Arlo/numpy versions and a sampler-inputs file; host artifacts on sos.ga.gov; add an explicit BMD/HMPB field to manifests.
