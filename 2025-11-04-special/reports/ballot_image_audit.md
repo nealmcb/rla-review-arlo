@@ -5,7 +5,7 @@ title: Ballot Image Audit Analysis — November 2025
 
 # Ballot Image Audit Analysis — Georgia November 4, 2025 Special Election
 
-**Version:** v0.23 &nbsp;·&nbsp; **Review timestamp:** 2026-11-10T00:51:00Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
+**Version:** v0.24 &nbsp;·&nbsp; **Review timestamp:** 2026-11-10T14:40:00Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
 
 ---
 

@@ -5,7 +5,7 @@ title: Artifact Inventory
 
 # Artifact Inventory — Georgia May 19, 2026 RLA
 
-**Version:** v0.23 &nbsp;·&nbsp; **Review timestamp:** 2026-11-10T00:51:00Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
+**Version:** v0.24 &nbsp;·&nbsp; **Review timestamp:** 2026-11-10T14:40:00Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
 
 ---
 
@@ -149,6 +149,6 @@ The SOS June 3 press release states:
 | `manifests.zip` | `c31d1f67404634ea04b4c68a5272655c9bd3879fe2233f4878819963cfc17aaf` | ✓ |
 | `candidate_totals.zip` | `2842be86bd615160f36f0af8f6d52a2fe1192103163dd51de8d8a1617ca10312` | ✓ |
 
-Note: An earlier version of this investigation used an incorrect prefix (`7d00771bf178007f4c6f43bf45b6`) that does not correspond to either file. The actual tweeted hashes are the full 64-character values above.
+The hash prefix `7d00771bf178007f4c6f43bf45b6`, which circulated alongside this audit, belongs to the June 16, 2026 primary runoff: it begins the runoff's ballot-manifests hash, posted by Gabriel Sterling on 2026-06-25 (see [X posts](../sources/x_posts_2026-11-10.md)). It corresponds to neither May file; the May primary's tweeted hashes are the full 64-character values above.
 
 See the [Hash Commitment Analysis](hash_commitment.md) for full details.

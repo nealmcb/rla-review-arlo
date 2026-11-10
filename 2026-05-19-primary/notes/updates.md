@@ -23,7 +23,7 @@ Served via MailChimp / CloudFront. No ETag or Last-Modified headers. ZIP timesta
 
 ## Step 3 ✓ — Hash commitment tested
 
-**Known prefix from claimed @GASecofState tweet: `7d00771bf178007f4c6f43bf45b6`**
+**Known prefix given for the tweet: `7d00771bf178007f4c6f43bf45b6`** (this is the start of the June 16, 2026 runoff audit's manifests hash, from Gabriel Sterling's 2026-06-25 post, not a May primary file)
 
 Result: **NOT FOUND** in any downloaded or extracted file.
 
@@ -166,8 +166,9 @@ User provided the full @GaSecofState tweet thread text from May 28, 2026.
    - manifests.zip: `c31d1f67404634ea04b4c68a5272655c9bd3879fe2233f4878819963cfc17aaf` ✓ EXACT MATCH
    - candidate_totals.zip: `2842be86bd615160f36f0af8f6d52a2fe1192103163dd51de8d8a1617ca10312` ✓ EXACT MATCH
 
-2. **The briefing's "known prefix" `7d00771bf178007f4c6f43bf45b6` was WRONG**
-   — it does not appear in the actual tweet and does not match any artifact
+2. **The briefing's "known prefix" `7d00771bf178007f4c6f43bf45b6` belongs to a different audit**
+   — it begins the June 16, 2026 runoff's manifests hash (`7d00771bf178007f4c6f43bf45b6812d5357ced4a3f68bb151357e68e3fef2ff`,
+   Gabriel Sterling, 2026-06-25), so it matches no May primary file
 
 3. **TWO hashes were committed, not one** — both manifests AND candidate_totals
 

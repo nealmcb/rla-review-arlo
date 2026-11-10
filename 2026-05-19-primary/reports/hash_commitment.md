@@ -5,7 +5,7 @@ title: Hash Commitment Analysis
 
 # Hash Commitment Analysis — Georgia May 19, 2026 RLA
 
-**Version:** v0.23 &nbsp;·&nbsp; **Review timestamp:** 2026-11-10T00:51:00Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
+**Version:** v0.24 &nbsp;·&nbsp; **Review timestamp:** 2026-11-10T14:40:00Z &nbsp;·&nbsp; [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [← Reports](../)
 
 ---
 
@@ -33,12 +33,12 @@ Source: `https://sos.ga.gov/news/raffensperger-announces-primary-risk-limiting-a
 
 ## The Tweet Thread (via copy-paste, 05/28/2026)
 
-The following tweets were posted as a thread from @GaSecofState on May 28, 2026, starting at 11:52 AM EDT. Exact UTC times come from each post's status ID, decoded with [`src/snowflake_time.py`](https://github.com/nealmcb/rla-review-arlo/blob/main/src/snowflake_time.py):
+The following tweets were posted as a thread from @GaSecofState on May 28, 2026, starting at 11:52 AM EDT. Exact UTC times come from each post's status ID, decoded with [`src/snowflake_time.py`](https://github.com/nealmcb/rla-review-arlo/blob/main/src/snowflake_time.py); all the posts are also listed in [X posts](../sources/x_posts_2026-11-10.md):
 
 > **Tweet 1** ([2060026478759137692](https://x.com/GaSecofState/status/2060026478759137692), 15:52:40.634 UTC):
 > "Later today, Georgia counties are counting a random sample of ballot batches by hand as part of Risk Limiting Audits (RLA). We want this audit to be as transparent as possible."
 
-> **Tweet 2:**
+> **Tweet 2** ([2060027461572731172](https://x.com/GaSecofState/status/2060027461572731172), 15:56:34.955 UTC):
 > "We could publish the ballot manifests and machine-counted batch totals, so everyone can follow along and verify on their own that the numbers match with the hand counts. But, if we did that before the audit finishes, some may question whether that gives auditors a 'number to hit'"
 
 > **Tweet 3** ([2060027592845955437](https://x.com/GaSecofState/status/2060027592845955437), 15:57:06.253 UTC):
@@ -48,7 +48,7 @@ The following tweets were posted as a thread from @GaSecofState on May 28, 2026,
 > **Tweet 4** ([2060027632255639963](https://x.com/GaSecofState/status/2060027632255639963), 15:57:15.649 UTC):
 > "and the machine-counted batch totals: `2842be86bd615160f36f0af8f6d52a2fe1192103163dd51de8d8a1617ca10312`"
 
-> **Tweet 5:**
+> **Tweet 5** ([2060027661955576320](https://x.com/GaSecofState/status/2060027661955576320), 15:57:22.730 UTC):
 > "When the audit completes, we will publish the ballot manifests and machine-counted batch totals, and the public will be able to check that the hand counts match, and that the batch totals match the hash above."
 
 ---
@@ -84,8 +84,10 @@ The official `final_audit_report.csv` records a Round 1 start timestamp of `2026
 | Public dice roll (twenty 10-sided dice, State Capitol) | at or before 15:49:15 | at or before 11:49 AM | — |
 | Arlo Round 1 started (seed entered, sample drawn) | 15:49:15.244 | 11:49:15 AM | — |
 | Tweet 1 (thread begins; no hash) | 15:52:40.634 | 11:52:40 AM | 3 m 25 s |
+| Tweet 2 ("number to hit") | 15:56:34.955 | 11:56:34 AM | 7 m 20 s |
 | Tweet 3: ballot manifests hash | 15:57:06.253 | 11:57:06 AM | **7 m 51 s** |
 | Tweet 4: batch totals hash | 15:57:15.649 | 11:57:15 AM | **8 m 00 s** |
+| Tweet 5 (thread ends) | 15:57:22.730 | 11:57:22 AM | 8 m 07 s |
 
 **The hashes were committed at least 8 minutes after the dice were rolled**: 8 minutes after the seed was entered into Arlo, and longer after the roll itself by an amount not yet documented. The sample was already drawn. The press release's "11:52 AM" is the time of the thread's first tweet, which carries no hash.
 
