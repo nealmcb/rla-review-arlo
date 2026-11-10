@@ -5,7 +5,7 @@ title: Executive Summary
 
 # Georgia May 19, 2026 General Primary RLA — Executive Summary
 
-**Version:** v0.22 &nbsp;·&nbsp; **Review timestamp:** 2026-07-01T21:50:00Z  
+**Version:** v0.23 &nbsp;·&nbsp; **Review timestamp:** 2026-11-10T00:51:00Z  
 **Repository:** [github.com/nealmcb/rla-review-arlo](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp; [Back to main page](../)
 
 ---

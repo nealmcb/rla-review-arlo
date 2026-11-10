@@ -6,8 +6,8 @@ title: Georgia November 2025 Special Election — Review
 # Georgia November 4, 2025 Special Election
 ## Risk-Limiting Audit and Ballot Image Audit — Transparency Review
 
-**Version:** v0.22 &nbsp;·&nbsp; **Review timestamp:** 2026-07-01T21:50:00Z &nbsp;·&nbsp;
-[v0.22 tag](https://github.com/nealmcb/rla-review-arlo/releases/tag/v0.22) &nbsp;·&nbsp;
+**Version:** v0.23 &nbsp;·&nbsp; **Review timestamp:** 2026-11-10T00:51:00Z &nbsp;·&nbsp;
+[v0.23 tag](https://github.com/nealmcb/rla-review-arlo/releases/tag/v0.23) &nbsp;·&nbsp;
 [Repository](https://github.com/nealmcb/rla-review-arlo) &nbsp;·&nbsp;
 [Comments / Issues](https://github.com/nealmcb/rla-review-arlo/issues)
 
@@ -26,7 +26,8 @@ Two independent post-election audit mechanisms were applied:
 
 1. **Risk-Limiting Audit (RLA):** A batch-comparison (MACRO) hand-count audit of PSC
    District 2, conducted statewide across all 159 counties. The audit met its 5% risk
-   limit with 355 batches hand-counted.
+   limit on a risk-limited sample of 15 batches; counties hand-counted 355 batches in all,
+   including 340 additional batches that do not enter the risk calculation.
 
 2. **Ballot Image Audit:** Enhanced Voting applied OCR to all 1,581,539 ballot images
    and compared against CVR data and election results, finding 14 discrepancies. The
@@ -46,18 +47,35 @@ Georgia conducted a statewide batch-comparison (MACRO) RLA of the PSC District 2
 | Contest | Public Service Commissioner District 2 |
 | Risk limit | 5% |
 | Random seed | `34363370190391208563` |
-| Batches sampled | 355 |
-| Batches with no deviation | 351 (98.9%) |
-| Batches with discrepancy | 4 |
+| Batches drawn by the risk-limited sample | 15 (18,182 ballots, in 10 counties) |
+| Additional batches (Arlo `EXTRA`) | 340 |
+| Batches hand-counted in all | 355, in all 159 counties |
+| Risk-sampled batches with a discrepancy | 0 |
+| Additional batches with a discrepancy | 4 (Houston, Lamar, Spalding, Wilkes; 1–2 votes each) |
 | Risk level achieved | p = 0.034 (3.4%) — risk limit met |
 
 Secretary Raffensperger announced on November 18, 2025 that the audit confirmed the outcome
 of the PSC District 2 contest. The 4 discrepant batches were described as "within an expected
 margin of error for a hand count."
 
+**Sampled versus additional batches.** In `final_audit_report.csv`, the Round 1 row reports 15
+batches sampled, and the SAMPLED BATCHES section lists those 15 with ticket numbers plus 340
+batches whose ticket number is `EXTRA`. Arlo adds `EXTRA` batches for Georgia by counting group
+(the `sample_extra_batches_by_counting_group` feature flag) so that every county hand-counts,
+and it leaves them out of the results used for the risk measurement (`server/api/shared.py`
+excludes them unless non-RLA batches are explicitly requested, as for discrepancy reports). The
+3.4% risk level therefore rests on the 15 sampled batches, all of which matched the machine
+count exactly. All 4 discrepancies were in `EXTRA` batches: real evidence about the count, but
+outside the risk calculation.
+
 The RLA artifact files — final audit report CSV, ballot manifests ZIP, and candidate totals
 ZIP — were published by the SOS. The manifests and candidate totals ZIPs contain inner ZIP
 files with per-county data, each accompanied by a `.sha256sum` file for verification.
+
+**Hash commitment.** On November 12, 2025, 32 to 54 minutes after the public dice roll that set
+the random seed, @GaSecofState posted SHA256 hashes of the inner manifests and candidate
+totals ZIPs. Both match the published files exactly. The commitment is post-seed and pre-count;
+see the [Hash Commitment Analysis](reports/hash_commitment.md).
 
 ---
 
@@ -122,4 +140,5 @@ files were obtained manually.
 
 | Report | Description |
 |--------|-------------|
+| [Hash Commitment Analysis](reports/hash_commitment.md) | Verification and timing of the @GaSecofState hash posts of November 12, 2025 |
 | [Ballot Image Audit](reports/ballot_image_audit.md) | Analysis of the Enhanced Voting report — AuditMark findings, county discrepancy table, methodology |
