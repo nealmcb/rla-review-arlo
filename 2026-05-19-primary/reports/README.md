@@ -27,7 +27,7 @@ On May 28, 2026, @GaSecofState published a five-tweet thread, starting at 11:52 
 
 **Individual batch ticket numbers are reproducible** from the public seed using the open-source `consistent_sampler` library. Ticket numbers for a selection of batches from the audit report were independently verified with exact matches; any batch in the audit report can be verified the same way.
 
-**The risk limit was met for both contests** (risk levels 4.91% and 4.17%), 706 batches were hand-counted across all 159 counties, and discrepancies were minor and not outcome-changing.
+**The risk limit was met for both contests** (risk levels 4.91% and 4.17%) on a risk-limited sample of 148 batches. Counties hand-counted 706 batches in all, across all 159 counties, including 558 additional `EXTRA` batches that do not enter the risk calculation; and discrepancies were minor and not outcome-changing.
 
 **Remaining limitations:** The hash commitment was made at least 8 minutes after the dice were rolled (post-seed, not pre-seed), and lives only on X/Twitter rather than a durable official page. The full MACRO sample draw requires the Arlo/numpy version used (not published with the audit artifacts).
 
@@ -43,7 +43,7 @@ On May 28, 2026, @GaSecofState published a five-tweet thread, starting at 11:52 
 | May 28, 11:49 AM EDT | Random seed `06712221796172622814` entered into Arlo; Round 1 started (15:49:15 UTC per audit report) |
 | May 28, 11:52 AM EDT | @GaSecofState begins its tweet thread (15:52:40 UTC) |
 | May 28, 11:57 AM EDT | @GaSecofState tweets SHA256 hashes of **both** manifests.zip and candidate_totals.zip (15:57:06 and 15:57:15 UTC, at least 8 min after the dice roll) |
-| May 28–June 2 | 159 counties hand-count 706 batches |
+| May 28–June 2 | 159 counties hand-count 706 batches (148 risk-sampled, 558 `EXTRA`) |
 | June 2, ~9:28 PM EDT | Round 1 completed in Arlo (21:28:20 UTC per audit report) |
 | June 3, 2026 | SOS press release with artifact download links on MailChimp |
 | June 5, 2026 | Election certification deadline |
@@ -59,8 +59,9 @@ On May 28, 2026, @GaSecofState published a five-tweet thread, starting at 11:52 
 | Risk limit | 5% |
 | US Senate Rep — risk level | 0.0491 (4.91%) — risk limit met |
 | Governor Dem — risk level | 0.0417 (4.17%) — risk limit met |
-| Batches sampled | 706 |
-| Ballots in sample | 341,816 |
+| Batches drawn by the risk-limited sample | 148 (188,534 ballots) |
+| Additional batches (Arlo `EXTRA`) | 558 (153,282 ballots) |
+| Batches hand-counted in all | 706 (341,816 ballots) |
 | Total ballots in manifests | 2,081,564 |
 | Counties | 159 |
 | Total manifest batches | 5,641 |

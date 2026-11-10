@@ -17,6 +17,8 @@ The May 19, 2026 Georgia primary audit found discrepancies in 100 of 706 hand-co
 batches. Total absolute vote differences: **257 votes** across 341,816 audited ballots
 (0.75‰). No discrepancy changed the outcome of either audited contest.
 
+Of these, **148 batches were drawn by the risk-limited sample** (188,534 ballots; 27 with a discrepancy, 116 votes, 0.62‰) and **558 were additional `EXTRA` batches** (153,282 ballots; 73 with a discrepancy, 141 votes, 0.92‰). Arlo adds `EXTRA` batches for Georgia by counting group and leaves them out of the results used for the risk measurement, so only the 148 bear on the risk limit; all 706 are evidence about the count. See [Sample Reproducibility](sample_reproducibility.md) for the reconciliation of these figures.
+
 Key finding: **HMPB (hand-marked absentee) ballots show 2–3× more vote discrepancies per
 ballot than BMD (ballot-marking device) ballots** — the opposite of naive expectation.
 The per-*batch* BMD rate is higher, but that is an artifact of batch size, not a higher
@@ -120,7 +122,7 @@ in batch size. This shapes almost everything in the discrepancy analysis.
 **6,381 ballots**. Auditors hand-read and tallied 6,381 BMD printed receipts from a
 single scanner as one audit unit.
 
-### Batch size distribution (all 706 audited batches)
+### Batch size distribution (all 706 audited batches, risk-sampled and `EXTRA`)
 
 | Batch size range | Count |
 |-----------------|-------|
@@ -444,6 +446,8 @@ would convert an audit that *detects* anomalies into one that also *explains* th
 | Finding | Detail |
 |---------|--------|
 | Total audited batches with discrepancy | 100 / 706 (14.2%) |
+| Risk-sampled batches with discrepancy | 27 / 148 (18.2%); 116 votes in 188,534 ballots (0.62‰) |
+| `EXTRA` batches with discrepancy (outside the risk calculation) | 73 / 558 (13.1%); 141 votes in 153,282 ballots (0.92‰) |
 | Total absolute vote discrepancies | 257 votes across 341,816 audited ballots (0.75‰) |
 | BMD share of all ballots cast | 97.8% (AV 47.8%, ED 50.0%) |
 | Ballot coverage by type | ABM 33.7%, BMD-AV 20.9%, BMD-ED 11.3% |

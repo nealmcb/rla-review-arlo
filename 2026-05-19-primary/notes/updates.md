@@ -56,7 +56,7 @@ Key findings:
 - **Round 1 end**: 2026-06-02T21:28:20 UTC
 - **US Senate Rep**: sample 138, p-value 0.0491, risk met
 - **Governor Dem**: sample 18, p-value 0.0417, risk met
-- **Batches sampled**: 148 jurisdictions × average 4.4 = 706 batches total
+- **Batches**: 148 drawn by the risk-limited sample plus 558 `EXTRA` batches = 706 hand-counted
 - **Ballots in sample total**: 341,816
 - **Discrepancies**: 100 batches had some vote count difference (all minor, not outcome-changing)
 - Software: Arlo (VotingWorks) confirmed
@@ -118,7 +118,7 @@ Key principles: software independence, mechanical verification, human/blind audi
 | May 28, ~11:49 AM EDT | Dice roll event; seed 06712221796172622814 entered into Arlo; round 1 started | final_audit_report.csv |
 | May 28, 11:52 AM EDT | @GaSecofState begins its tweet thread (15:52:40 UTC) | status ID 2060026478759137692 |
 | May 28, 11:57 AM EDT | @GaSecofState tweets SHA256 hashes of the manifests (15:57:06 UTC) and batch totals (15:57:15 UTC) | status IDs 2060027592845955437, 2060027632255639963; both hashes verified |
-| May 28–June 2 | Counties count 706 batches (706 × 148 batches) | audit report |
+| May 28–June 2 | Counties count 706 batches (148 risk-sampled + 558 `EXTRA`) | audit report |
 | June 2, ~5:28 PM EDT | Audit round 1 completed in Arlo | final_audit_report.csv |
 | June 3, 2026 | SOS press release published with artifact links | sos.ga.gov |
 | June 5, 2026 | Election certification deadline | news reports |

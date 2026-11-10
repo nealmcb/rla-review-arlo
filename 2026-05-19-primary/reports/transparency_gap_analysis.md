@@ -102,7 +102,7 @@ Batch types were classified from the audit report batch name conventions:
 - `AV-...` / `Advance Voting` → Advance Voting (BMD)
 - `ED-...` / `Election Day` → Election Day (BMD)
 
-### Results (706 audited batches) — two metrics
+### Results (706 audited batches: 148 risk-sampled, 558 `EXTRA`) — two metrics
 
 The per-batch discrepancy rate and the per-ballot vote discrepancy rate tell very different stories. **Both are shown; the per-ballot rate is the more meaningful comparison.**
 
@@ -122,7 +122,7 @@ The per-batch discrepancy rate and the per-ballot vote discrepancy rate tell ver
 
 3. **Within BMD types, Advance Voting (34.2%) far exceeds Election Day (13.8%)** — but the per-ballot rates are similar (0.60‰ vs. 0.83‰). The per-batch gap is again a batch-size artifact: AV median batch is 1,613 ballots vs. 340 for ED.
 
-4. **Discrepancy magnitudes are small.** The total margin change across all 706 audited batches is 91 votes (Rep) and 106 votes (Dem) out of 341,816 ballots hand-counted. No discrepancy was large enough to approach changing the outcome of either contest.
+4. **Discrepancy magnitudes are small.** The total margin change across all 706 audited batches is 91 votes (Rep) and 106 votes (Dem) out of 341,816 ballots hand-counted. Only the 148 risk-sampled batches enter the risk calculation. No discrepancy was large enough to approach changing the outcome of either contest.
 
 5. **No separate "HMPB/BMD" flag in the published artifacts.** The ballot type must be inferred from batch names. Georgia could improve transparency by explicitly tagging each batch with its ballot type and ballot count in the manifest and audit report. This would also make the batch-size-driven discrepancy rate effect immediately visible in the official artifacts.
 
@@ -239,7 +239,7 @@ Georgia could improve transparency significantly without legislative change:
 
 ## Distinction: "Audit Was Conducted" vs. "Audit Is Independently Reproducible"
 
-Georgia's 2026 primary RLA was conducted using legitimate procedures: public dice roll, Arlo software, all 159 counties, two contests, 5% risk limit, 706 batches hand-counted. The audit confirmed the election outcome. The process was observed by media and public attendees.
+Georgia's 2026 primary RLA was conducted using legitimate procedures: public dice roll, Arlo software, all 159 counties, two contests, 5% risk limit, 148 batches drawn by the risk-limited sample and 706 hand-counted in all. The audit confirmed the election outcome. The process was observed by media and public attendees.
 
 However, from the publicly posted artifacts alone, the audit is **not yet fully independently reproducible** in the sense described by PR #2350:
 

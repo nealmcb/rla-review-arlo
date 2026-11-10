@@ -59,7 +59,7 @@ This MACRO audit compares, for each sampled batch, the sum of QR-code scanner re
 
 ### Discrepancy Rates by Ballot Type
 
-The scripts in this repository classify the 706 audited batches by ballot type using batch-name conventions in the official manifest. Two metrics are shown; the per-ballot rate is the more meaningful one:
+The 706 hand-counted batches are 148 drawn by the risk-limited sample and 558 additional `EXTRA` batches that Arlo leaves out of the risk calculation (27 and 73 of them, respectively, show a discrepancy; see the [Discrepancy Analysis report](reports/discrepancy_analysis.md)). The scripts in this repository classify all 706 audited batches by ballot type using batch-name conventions in the official manifest. Two metrics are shown; the per-ballot rate is the more meaningful one:
 
 | Ballot Type | Batches | Median Batch Size | % Batches w/ Discrepancy | \|Δ votes\| / 1000 ballots |
 |-------------|---------|------------------|--------------------------|---------------------------|
